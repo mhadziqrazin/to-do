@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String @id @default(uuid()) @map("_id") @db.Uuid
+  name      String
+  username  String @unique
+  password  String
+  image     String?
+  completed Int    @default(0)
+
+  todos     Todo[]
+  feeds     Feed[]
+  feedLikes Likes[]
+}
+
+model Todo {
+  id          String   @id @default(uuid()) @map("_id") @db.Uuid
+  title       String
+  description String
+  createdAt   DateTime @default(now())
+  done        Boolean  @default(false)
+  dueAt       DateTime
+  userId      String   @db.Uuid
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  feed Feed?
+}
+
+model Feed {
+  id        String   @id @default(uuid()) @map("_id") @db.Uuid
+  todoId    String   @unique @db.Uuid
+  userId    String   @db.Uuid
+  createdAt DateTime
+
+  todo Todo @relation(fields: [todoId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  userLikes Likes[]
+}
+
+model Likes {
+  userId String @db.Uuid
+  feedId String @db.Uuid
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  feed Feed @relation(fields: [feedId], references: [id], onDelete: Cascade)
+
+  @@id([userId, feedId])
+}
