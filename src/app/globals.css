@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.page-center {
+  @apply
+    grid h-full place-items-center
+}
+
 .bg-theme {
   @apply
   bg-white dark:bg-dark
@@ -27,4 +32,19 @@
     border-2
     border-neutral-200
     dark:border-gray
+}
+
+.border-focus-theme {
+  @apply
+    focus:border-black dark:focus:border-white
+    transition
+}
+
+.hover-primary-theme {
+  @apply
+    text-white
+    bg-primary
+    hover:bg-transparent
+    hover:text-primary
+    transition duration-200
 }

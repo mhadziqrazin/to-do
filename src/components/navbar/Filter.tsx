@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from "react"
 
 const Filter = () => {
   const params = useSearchParams()
-  const filter = params.get('filter') || 'All'
+  const filter = params?.get('filter') || 'All'
   const router = useRouter()
 
   const handleClick = useCallback((filter: string) => {
@@ -86,7 +86,6 @@ const Filter = () => {
               handleClose()
             }
           }}
-          // onClick={handleToggle}
           className="text-primary"
         >
           {filter}
@@ -94,9 +93,9 @@ const Filter = () => {
         {open && (
           <div className="absolute top-[24px]">
             <ul className={`
-                bg-theme border-2-theme flex flex-col text-secondary-theme items-center overflow-hidden rounded-xl text-md
+                bg-theme border-2-theme flex flex-col text-secondary-theme items-center overflow-hidden rounded-xl text-md shadow-theme
                 ${visible ? 'h-[132px]' : 'h-[0px]'}
-                transition-all duration-500 ease-in-out
+                transition-all duration-500
               `}
             >
               <li className="hover:bg-neutral-200 dark:hover:bg-gray w-full">

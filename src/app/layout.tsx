@@ -17,10 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${font.className} bg-theme`}>
+      <body className={`${font.className} bg-theme h-screen`}>
         <Theme>
           <Nav />
-          <div className='container mx-auto p-4'>
+          <div className='container mx-auto p-4 h-full'>
             {children}
           </div>
         </Theme>
