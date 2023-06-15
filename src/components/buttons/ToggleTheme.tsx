@@ -3,6 +3,8 @@
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 
+import { FaMoon, FaRegSun } from "react-icons/fa"
+
 const ToggleTheme = () => {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
@@ -12,14 +14,21 @@ const ToggleTheme = () => {
   }, [])
 
   if (!mounted) {
-    return null
+    return (
+      <button className="flex text-primary">
+        <FaRegSun size={20} />
+      </button>
+    )
   }
 
   return (
     <button
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+      className="flex text-primary"
     >
-      Theme
+      {
+        theme === 'light' ? <FaRegSun size={20} /> : <FaMoon size={20} />
+      }
     </button>
   )
 }

@@ -11,3 +11,8 @@
   @apply
     shadow-md dark:shadow-black/20
 }
+
+.text-gray-theme {
+  @apply
+    text-black/50 dark:text-white/50
+}
