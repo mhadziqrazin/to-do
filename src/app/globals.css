@@ -4,7 +4,12 @@
 
 .page-center {
   @apply
-    grid h-full place-items-center
+    flex flex-col min-h-[calc(100vh-192px)] items-center justify-center
+}
+
+.w-one {
+  @apply
+    w-full sm:w-3/4 md:w-7/12 xl:w-4/12
 }
 
 .bg-theme {

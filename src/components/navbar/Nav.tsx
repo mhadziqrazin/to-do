@@ -9,7 +9,7 @@ interface NavProps { }
 const Nav: React.FC<NavProps> = ({ }) => {
 
   return (
-    <nav className="shadow-theme bg-theme z-10 fixed w-full top-0">
+    <nav className="shadow-theme bg-theme z-10 sticky w-full top-0">
       <div className="container mx-auto p-4">
         <ul className="flex items-center justify-between">
           <li>

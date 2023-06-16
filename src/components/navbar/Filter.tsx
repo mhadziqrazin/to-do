@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from "react"
 
 const Filter = () => {
   const params = useSearchParams()
-  const filter = params?.get('filter') || 'All'
+  const filter = params?.get('filter') || 'Feeds'
   const router = useRouter()
 
   const handleClick = useCallback((filter: string) => {
@@ -22,7 +22,7 @@ const Filter = () => {
     }
 
     const url = queryString.stringifyUrl({
-      url: '/',
+      url: filter === 'Feeds' ? '/' : '/todos',
       query: newQuery
     })
 

@@ -11,12 +11,12 @@ export default function Login() {
   })
   return (
     <main className="page-center">
-      <section className="flex flex-col gap-8">
+      <section className="flex flex-col justify-center gap-8 w-one">
         <h1 className="text-2xl">
           <span className="text-primary font-semibold">Login</span> and start actually do things
         </h1>
         <p className="text-center font-light">
-          Don&apos;t have an account? <span className="text-primary underline">
+          Don&apos;t have an account? <span className="text-primary hover:underline">
             <Link href={"/register"}>
               Register
             </Link>
