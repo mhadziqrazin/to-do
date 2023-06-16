@@ -32,6 +32,13 @@
     text-black/30 dark:text-white/30
 }
 
+.border-1-theme {
+  @apply
+    border-[1px]
+    border-neutral-200
+    dark:border-gray
+}
+
 .border-2-theme {
   @apply
     border-2
