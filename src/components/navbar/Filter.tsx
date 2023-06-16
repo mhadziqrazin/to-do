@@ -9,6 +9,21 @@ const Filter = () => {
   const filter = params?.get('filter') || 'Feeds'
   const router = useRouter()
 
+  
+  const [open, setOpen] = useState(false)
+  const [visible, setVisible] = useState(false)
+  
+  useEffect(() => {
+    setVisible(open)
+  }, [open])
+  
+  const handleClose = useCallback(() => {
+    setVisible(false)
+    setTimeout(() => {
+      setOpen(false)
+    }, 500)
+  }, [setOpen, setVisible])
+  
   const handleClick = useCallback((filter: string) => {
     let query = {}
 
@@ -28,22 +43,7 @@ const Filter = () => {
 
     router.push(url)
     handleClose()
-  }, [filter, params])
-
-  const [open, setOpen] = useState(false)
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    setVisible(open)
-  }, [open])
-
-  const handleClose = useCallback(() => {
-    setVisible(false)
-    setTimeout(() => {
-      setOpen(false)
-    }, 500)
-  }, [setOpen, setVisible])
-
+  }, [params, handleClose, router])
 
   return (
     <>

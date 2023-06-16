@@ -25,12 +25,14 @@ export default function Register() {
   const username = watch('username')
   const name = watch('name')
   const password = watch('password')
+  
   const disableButton = useMemo(() => {
     return (username === '') || (name === '') || (password === '')
   }, [username, name, password])
 
   const handleRegister: SubmitHandler<FieldValues> = async (data) => {
     setLoading(true)
+    
     try {
       const res = await axios.post('/api/auth/register', data)
       if (res.status === 201) {

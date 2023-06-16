@@ -6,7 +6,8 @@ import { FieldValues, useForm } from "react-hook-form"
 export default function Login() {
   const { } = useForm<FieldValues>({
     defaultValues: {
-
+      username: '',
+      password: ''
     }
   })
   return (
