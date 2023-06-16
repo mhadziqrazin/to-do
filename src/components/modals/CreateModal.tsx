@@ -46,7 +46,7 @@ const CreateModal = () => {
       if (res.status == 201) {
         toast.success('To do list created')
         reset()
-        
+        setDate('dueAt', new Date().toISOString())
       } else {
         toast.error(res.data.error as string)
       }
