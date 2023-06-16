@@ -9,10 +9,12 @@ import { useMemo, useState } from "react"
 import InputDateTime from "../inputs/InputDateTime"
 import { toast } from "react-hot-toast"
 import axios from "axios"
+import { useRouter } from "next/navigation"
 
 const CreateModal = () => {
   const createModal = useCreateModal()
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
   const {register, watch, handleSubmit, setValue, reset} = useForm<FieldValues>({
     defaultValues: {
@@ -45,8 +47,8 @@ const CreateModal = () => {
       const res = await axios.post('/api/create', data)
       if (res.status == 201) {
         toast.success('To do list created')
-        reset()
-        setDate('dueAt', new Date().toISOString())
+        router.refresh()
+        createModal.onClose()
       } else {
         toast.error(res.data.error as string)
       }

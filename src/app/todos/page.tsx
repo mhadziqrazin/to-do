@@ -10,16 +10,16 @@ export default async function Todos() {
     redirect('/login?callbackUrl=/todos')
   }
 
-  const todos = await getAllToDos(user)
+  const todos = await getAllToDos(user, 'Not yet')
 
   return (
     <main className="flex flex-col items-center">
       <section className="flex flex-col gap-8 w-one">
         <div className="flex gap-4 items-center justify-center relative">
           <CreateButton />
-          <p className="text-2xl font-semibold">
+          {/* <p className="text-2xl font-semibold">
             ALL TO DO LISTS
-          </p>
+          </p> */}
         </div>
         {todos.map((todo) => (
           <div key={todo.id}>
