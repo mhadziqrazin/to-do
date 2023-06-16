@@ -7,12 +7,14 @@ import useCreateModal from "@/hooks/useCreateModal"
 import TextArea from "../inputs/TextArea"
 import { useMemo, useState } from "react"
 import InputDateTime from "../inputs/InputDateTime"
+import { toast } from "react-hot-toast"
+import axios from "axios"
 
 const CreateModal = () => {
   const createModal = useCreateModal()
   const [loading, setLoading] = useState(false)
 
-  const {register, watch, handleSubmit, setValue} = useForm<FieldValues>({
+  const {register, watch, handleSubmit, setValue, reset} = useForm<FieldValues>({
     defaultValues: {
       title: '',
       description: '',
@@ -37,7 +39,22 @@ const CreateModal = () => {
   }, [title, description])
 
   const handleCreate: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data)
+    setLoading(true)
+
+    try {
+      const res = await axios.post('/api/create', data)
+      if (res.status == 201) {
+        toast.success('To do list created')
+        reset()
+        
+      } else {
+        toast.error(res.data.error as string)
+      }
+    } catch {
+      toast.error('Something went wrong')
+    }
+
+    setLoading(false)
   }
 
   return (
