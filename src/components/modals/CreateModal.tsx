@@ -4,6 +4,7 @@ import { FieldValues, useForm } from "react-hook-form"
 import InputText from "../inputs/InputText"
 import Modal from "./Modal"
 import useCreateModal from "@/hooks/useCreateModal"
+import TextArea from "../inputs/TextArea"
 
 const CreateModal = () => {
   const createModal = useCreateModal()
@@ -25,6 +26,11 @@ const CreateModal = () => {
       <InputText
         id="title"
         label="Title"
+        register={register}
+      />
+      <TextArea
+        id="description"
+        label="Tell more about your task"
         register={register}
       />
     </Modal>

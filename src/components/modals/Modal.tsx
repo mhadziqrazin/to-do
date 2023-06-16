@@ -47,7 +47,7 @@ const Modal: React.FC<ModalProps> = ({
           <section className="w-full relative p-2 md:p-4 flex items-center justify-center">
             <button
               onClick={handleClose}
-              className="flex items-center"
+              className="flex items-center text-primary"
             >
               <IoCloseSharp size={25} className="absolute left-2 md:left-4" />
             </button>

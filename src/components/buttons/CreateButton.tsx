@@ -9,7 +9,7 @@ const CreateButton = () => {
   return (
     <button
       onClick={createModal.onOpen}
-      className="absolute left-0 shadow-theme"
+      className="absolute left-0 shadow-theme text-primary"
     >
       <BsPlusSquareFill size={25} />
     </button>
