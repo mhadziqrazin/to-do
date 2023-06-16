@@ -1,8 +1,12 @@
-export default function Home() {
+import getUser from "@/actions/getUser"
+
+export default async function Home() {
+  const user = await getUser()
+
   return (
     <>
       <section className="">
-        hai
+        {user ? user.name : 'Hi newcomer!'}
       </section>
     </>
   )

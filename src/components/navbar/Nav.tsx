@@ -3,10 +3,13 @@ import ToggleTheme from "../buttons/ToggleTheme"
 import Link from "next/link"
 import Filter from "./Filter"
 import { MdLogin } from "react-icons/md"
+import getUser from "@/actions/getUser"
+import LogoutButton from "../buttons/LogoutButton"
 
 interface NavProps { }
 
-const Nav: React.FC<NavProps> = ({ }) => {
+const Nav: React.FC<NavProps> = async () => {
+  const user = await getUser()
 
   return (
     <nav className="shadow-theme bg-theme z-10 sticky w-full top-0">
@@ -25,15 +28,22 @@ const Nav: React.FC<NavProps> = ({ }) => {
           </li>
           <li className="flex gap-2 items-center">
             <ToggleTheme />
-            <Link
-              href={"/login"}
-              className="text-sm flex gap-1 items-center border-2 border-primary hover-primary-theme rounded-xl py-1 px-2"
-            >
-              <p className="hidden sm:block">
-                Sign in
-              </p>
-              <MdLogin size={17}/>
-            </Link>
+            {user ?
+              (
+                <LogoutButton />
+              ) :
+              (<>
+                <Link
+                  href={"/login"}
+                  className="text-sm flex gap-1 items-center border-2 border-primary hover-primary-theme rounded-xl py-1 px-2"
+                >
+                  <p className="hidden sm:block">
+                    Sign in
+                  </p>
+                  <MdLogin size={17} />
+                </Link>
+              </>)
+            }
           </li>
         </ul>
       </div>

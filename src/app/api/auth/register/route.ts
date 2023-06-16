@@ -26,8 +26,8 @@ export async function POST(req: Request) {
 
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
-      return NextResponse.json({ error: "Username already exists." }, { status: 409 })
+      return NextResponse.json({ error: "Username already exists" }, { status: 409 })
     }
-    return NextResponse.json({ error: "Something went wrong." }, { status: 500 })
+    return NextResponse.json({ error: "Something went wrong" }, { status: 500 })
   }
 }

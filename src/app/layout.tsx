@@ -3,6 +3,7 @@ import './globals.css'
 import { Poppins } from 'next/font/google'
 import Theme from '@/components/providers/Theme'
 import { Toaster } from 'react-hot-toast'
+import Session from '@/components/providers/Session'
 
 const font = Poppins({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] })
 

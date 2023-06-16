@@ -1,29 +1,30 @@
 'use client'
 
-import { useRouter, useSearchParams } from "next/navigation"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import queryString from "query-string"
 import { useCallback, useEffect, useState } from "react"
 
 const Filter = () => {
   const params = useSearchParams()
-  const filter = params?.get('filter') || 'Feeds'
+  const pathname = usePathname()
+  const filter = params?.get('filter') || (pathname === '/' ? 'Feeds' : 'All')
   const router = useRouter()
 
-  
+
   const [open, setOpen] = useState(false)
   const [visible, setVisible] = useState(false)
-  
+
   useEffect(() => {
     setVisible(open)
   }, [open])
-  
+
   const handleClose = useCallback(() => {
     setVisible(false)
     setTimeout(() => {
       setOpen(false)
     }, 500)
   }, [setOpen, setVisible])
-  
+
   const handleClick = useCallback((filter: string) => {
     let query = {}
 
@@ -48,6 +49,13 @@ const Filter = () => {
   return (
     <>
       <div className="hidden sm:flex items-center text-gray-theme gap-4">
+        <button onClick={() => handleClick('Feeds')} className={`
+        hover:text-primary transition
+        ${filter === 'Feeds' && 'text-primary'}
+        `}
+        >
+          Feeds
+        </button>
         <button onClick={() => handleClick('All')} className={`
         hover:text-primary transition
         ${filter === 'All' && 'text-primary'}
@@ -68,13 +76,6 @@ const Filter = () => {
         `}
         >
           Completed
-        </button>
-        <button onClick={() => handleClick('Feeds')} className={`
-        hover:text-primary transition
-        ${filter === 'Feeds' && 'text-primary'}
-        `}
-        >
-          Feeds
         </button>
       </div>
       <div className="relative flex sm:hidden flex-col items-center">

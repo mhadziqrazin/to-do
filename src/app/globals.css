@@ -53,3 +53,12 @@
     hover:text-primary
     transition duration-200
 }
+
+.hover-secondary-theme {
+  @apply
+    text-primary
+    bg-transparent
+    hover:bg-primary
+    hover:text-white
+    transition duration-200
+}
