@@ -1,31 +1,31 @@
-// 'use server'
+'use server'
 
-// import { prisma } from "@/libs/prisma"
-// import { User } from "@prisma/client"
+import { prisma } from "../libs/prisma"
+import { User } from "@prisma/client"
 
-// const getAllToDos = async (user: User, path: string) => {
-//   if (!user) {
-//     return []
-//   }
+const getAllToDos = async (user: User, path: string) => {
+  if (!user) {
+    return []
+  }
 
-//   let query: any = { userId: user.id }
+  let query: any = { userId: user.id }
 
-//   if (path === '/todos/not-yet') {
-//     query.done = false
-//   } else if (path === '/todos/completed') {
-//     query.done = true
-//   }
+  if (path === '/todos/not-yet') {
+    query.done = false
+  } else if (path === '/todos/completed') {
+    query.done = true
+  }
 
-//   try {
-//     const res = await prisma.todo.findMany({
-//       where: query
-//     })
+  try {
+    const res = await prisma.todo.findMany({
+      where: query
+    })
 
-//     return res || []
+    return res || []
 
-//   } catch (err) {
-//     return []
-//   }
-// }
+  } catch (err) {
+    return []
+  }
+}
 
-// export default getAllToDos
+export default getAllToDos
