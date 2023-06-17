@@ -17,6 +17,16 @@
   bg-white dark:bg-dark
 }
 
+.bg-invert-theme {
+  @apply
+    bg-dark dark:bg-white
+}
+
+.bg-gray-theme {
+  @apply
+    bg-neutral-200 dark:bg-gray
+}
+
 .shadow-theme {
   @apply
     shadow-md dark:shadow-black/20
@@ -30,6 +40,11 @@
 .text-gray-theme {
   @apply
     text-black/30 dark:text-white/30
+}
+
+.text-invert-theme {
+  @apply
+    text-white dark:text-dark
 }
 
 .border-1-theme {

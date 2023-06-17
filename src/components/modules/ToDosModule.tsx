@@ -3,6 +3,7 @@
 import { Todo } from "@prisma/client"
 import useCreateModal from "@/hooks/useCreateModal"
 import { BsPlusSquareFill } from "react-icons/bs"
+import ToDo from "../todos/ToDo"
 
 interface ToDosModuleProps {
   todos: Todo[]
@@ -16,22 +17,16 @@ const ToDosModule: React.FC<ToDosModuleProps> = ({
   return (
     <main className="flex flex-col items-center">
       <section className="flex flex-col gap-8 w-one">
-        <div className="flex gap-4 items-center justify-center relative">
+        <div className="flex items-center">
           <button
             onClick={createModal.onOpen}
-            className="absolute left-0 shadow-theme text-primary"
+            className="shadow-theme text-primary"
           >
             <BsPlusSquareFill size={25} />
           </button>
-          {/* <p className="text-2xl font-semibold">
-            ALL TO DO LISTS
-          </p> */}
         </div>
         {todos.map((todo) => (
-          <div key={todo.id}>
-            <p>{todo.title}</p>
-            <p>{todo.description}</p>
-          </div>
+          <ToDo key={todo.id} todo={todo} />
         ))}
       </section>
     </main>
