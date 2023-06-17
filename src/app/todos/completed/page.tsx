@@ -1,7 +1,6 @@
-// import getAllToDos from "@/actions/getAllToDos"
+import getAllToDos from "@/actions/getAllToDos"
 import getUser from "@/actions/getUser"
 import ToDosModule from "@/components/modules/ToDosModule"
-import { Todo } from "@prisma/client"
 import { redirect } from "next/navigation"
 
 export default async function CompletedTodos() {
@@ -11,8 +10,7 @@ export default async function CompletedTodos() {
     redirect('/login?callbackUrl=/todos/completed')
   }
 
-  // const todos = await getAllToDos(user, '/todos/all')
-  const todos: Todo[] = []
+  const todos = await getAllToDos(user, '/todos/all')
 
   return (
     <ToDosModule todos={todos} />
