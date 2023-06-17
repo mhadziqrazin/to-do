@@ -1,6 +1,8 @@
 import { Todo } from "@prisma/client"
 import { format } from "date-fns"
 import { MdDeleteOutline, MdEditDocument } from "react-icons/md"
+import ToDoDeleteButton from "../buttons/ToDoDeleteButton"
+import ToDoDoneButton from "../buttons/ToDoDoneButton"
 
 interface ToDoProps {
   todo: Todo
@@ -21,8 +23,9 @@ const ToDo: React.FC<ToDoProps> = ({ todo }) => {
         {todo.description}
       </section>
       <section className="flex justify-end gap-1 p-2 text-primary">
-        <MdDeleteOutline size={20}/>
+        <ToDoDeleteButton todoId={todo.id} />
         <MdEditDocument size={20} />
+        <ToDoDoneButton todoId={todo.id} done={todo.done} />
       </section>
     </div>
   )
