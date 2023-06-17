@@ -1,5 +1,6 @@
 'use client'
 
+import Link from "next/link"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import queryString from "query-string"
 import { useCallback, useEffect, useState } from "react"
@@ -49,34 +50,34 @@ const Filter = () => {
   return (
     <>
       <div className="hidden sm:flex items-center text-gray-theme gap-4">
-        <button onClick={() => handleClick('Feeds')} className={`
-        hover:text-primary transition
-        ${filter === 'Feeds' && 'text-primary'}
-        `}
+        <Link href={'/'} className={`
+          hover:text-primary transition
+            ${pathname === '/' && 'text-primary'}
+          `}
         >
           Feeds
-        </button>
-        <button onClick={() => handleClick('All')} className={`
-        hover:text-primary transition
-        ${filter === 'All' && 'text-primary'}
-        `}
+        </Link>
+        <Link href={'/todos/all'} className={`
+          hover:text-primary transition
+            ${pathname === '/todos/all' && 'text-primary'}
+          `}
         >
           All
-        </button>
-        <button onClick={() => handleClick('Not yet')} className={`
-        hover:text-primary transition
-        ${filter === 'Not yet' && 'text-primary'}
-        `}
+        </Link>
+        <Link href={'/todos/not-yet'} className={`
+          hover:text-primary transition
+            ${pathname === '/todos/not-yet' && 'text-primary'}
+          `}
         >
           Not yet
-        </button>
-        <button onClick={() => handleClick('Completed')} className={`
-        hover:text-primary transition
-        ${filter === 'Completed' && 'text-primary'}
-        `}
+        </Link>
+        <Link href={'/todos/completed'} className={`
+          hover:text-primary transition
+            ${pathname === '/todos/completed' && 'text-primary'}
+          `}
         >
           Completed
-        </button>
+        </Link>
       </div>
       <div className="relative flex sm:hidden flex-col items-center">
         <button
