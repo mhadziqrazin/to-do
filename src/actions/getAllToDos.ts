@@ -3,28 +3,19 @@
 import { prisma } from "@/libs/prisma"
 import { User } from "@prisma/client"
 
-const getAllToDos = async (user: User, filter: string) => {
-  if (!user) {
-    return []
-  }
-
-  let query: any = { userId: user.id }
-
-  switch (filter) {
-    case 'Not yet':
-      query.done = false
-      break
-
-    case 'Completed':
-      query.done = true
-  }
-
+const getAllToDos = async (user: User) => {
   try {
+    if (!user) {
+      return []
+    }
+    
     const res = await prisma.todo.findMany({
-      where: query
+      where: {
+        userId: user.id
+      }
     })
 
-    return res || []
+    return res
 
   } catch (err) {
     return []

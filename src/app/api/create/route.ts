@@ -21,7 +21,7 @@ export async function POST(req: Request) {
       data: {
         title,
         description,
-        dueAt: new Date(dueAt),
+        dueAt,
         userId: user.id
       }
     })

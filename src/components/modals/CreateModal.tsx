@@ -16,7 +16,7 @@ const CreateModal = () => {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-  const {register, watch, handleSubmit, setValue, reset} = useForm<FieldValues>({
+  const { register, watch, handleSubmit, setValue } = useForm<FieldValues>({
     defaultValues: {
       title: '',
       description: '',
@@ -38,7 +38,7 @@ const CreateModal = () => {
 
   const disabledButton = useMemo(() => {
     return (title === '') || (description === '') || (dueAt === '')
-  }, [title, description])
+  }, [title, description, dueAt])
 
   const handleCreate: SubmitHandler<FieldValues> = async (data) => {
     setLoading(true)

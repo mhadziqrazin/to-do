@@ -1,5 +1,3 @@
-import { FieldValues, UseFormRegister } from "react-hook-form"
-
 interface InputTextProps {
   id: string
   onChange: (id: string, value: string) => void

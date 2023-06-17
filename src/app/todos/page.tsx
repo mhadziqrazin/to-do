@@ -10,7 +10,7 @@ export default async function Todos() {
     redirect('/login?callbackUrl=/todos')
   }
 
-  const todos = await getAllToDos(user, 'Not yet')
+  const todos = await getAllToDos(user)
 
   return (
     <main className="flex flex-col items-center">
