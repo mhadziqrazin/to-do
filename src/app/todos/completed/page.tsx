@@ -7,7 +7,7 @@ export default async function CompletedTodos() {
   const user = await getUser()
 
   if (!user) {
-    redirect('/login?callbackUrl=/todos')
+    redirect('/login?callbackUrl=/todos/completed')
   }
 
   const todos = await getAllToDos(user, '/todos/completed')

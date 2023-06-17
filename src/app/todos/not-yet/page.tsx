@@ -7,7 +7,7 @@ export default async function NotYetTodos() {
   const user = await getUser()
 
   if (!user) {
-    redirect('/login?callbackUrl=/todos')
+    redirect('/login?callbackUrl=/todos/not-yet')
   }
 
   const todos = await getAllToDos(user, '/todos/not-yet')
