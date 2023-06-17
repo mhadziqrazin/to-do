@@ -3,7 +3,7 @@ import './globals.css'
 import { Poppins } from 'next/font/google'
 import Theme from '@/components/providers/Theme'
 import { Toaster } from 'react-hot-toast'
-// import CreateModal from '@/components/modals/CreateModal'
+import CreateModal from '@/components/modals/CreateModal'
 
 const font = Poppins({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] })
 
@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={`${font.className} bg-theme h-screen`}>
         <Theme>
           <Toaster />
-          {/* <CreateModal /> */}
+          <CreateModal />
           <Nav />
           <div className='container mx-auto px-4 py-16'>
             {children}
