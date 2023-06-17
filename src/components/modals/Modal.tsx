@@ -10,7 +10,7 @@ interface ModalProps {
   action: () => void
   actionLabel: string
   onClose: () => void
-  children: React.ReactNode
+  children?: React.ReactNode
   disabled: boolean
   loading: boolean
   secondaryAction?: () => void
@@ -69,6 +69,7 @@ const Modal: React.FC<ModalProps> = ({
                   onClick={secondaryAction}
                   disabled={disabled}
                   loading={loading}
+                  secondary
                 >
                   {secondaryActionLabel}
                 </Button>
