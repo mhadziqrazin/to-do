@@ -4,6 +4,7 @@ import { MdEditDocument } from "react-icons/md"
 import ToDoDeleteButton from "../buttons/ToDoDeleteButton"
 import ToDoDoneButton from "../buttons/ToDoDoneButton"
 import ToDoEditButton from "../buttons/ToDoEditButton"
+import DeleteModal from "../modals/DeleteModal"
 
 interface ToDoProps {
   todo: Todo

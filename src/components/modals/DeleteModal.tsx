@@ -12,13 +12,14 @@ const DeleteModal = () => {
     <Modal
       isOpen={deleteModal.isOpen}
       title="Are you sure want to delete?"
-      action={() => {}}
+      action={() => { }}
       actionLabel="Delete"
       onClose={deleteModal.onClose}
       disabled={false}
       loading={loading}
+      secondaryAction={() => {}}
+      secondaryActionLabel="Cancel"
     >
-      
     </Modal>
   )
 }

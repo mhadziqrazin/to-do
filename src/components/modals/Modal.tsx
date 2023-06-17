@@ -13,10 +13,12 @@ interface ModalProps {
   children: React.ReactNode
   disabled: boolean
   loading: boolean
+  secondaryAction?: () => void
+  secondaryActionLabel?: string
 }
 
 const Modal: React.FC<ModalProps> = ({
-  isOpen, title, action, actionLabel, onClose, children, disabled, loading
+  isOpen, title, action, actionLabel, onClose, children, disabled, loading, secondaryAction, secondaryActionLabel
 }) => {
   const [visible, setVisible] = useState(false)
 
@@ -61,13 +63,24 @@ const Modal: React.FC<ModalProps> = ({
           <hr className="w-full border-1-theme" />
           <section className="w-full p-2 md:p-4 flex flex-col place-content-center gap-2 md:gap-4">
             {children}
-            <Button
-              onClick={action}
-              disabled={disabled}
-              loading={loading}
-            >
-              {actionLabel}
-            </Button>
+            <div className="flex gap-2 place-content-center">
+              {secondaryAction && (
+                <Button
+                  onClick={secondaryAction}
+                  disabled={disabled}
+                  loading={loading}
+                >
+                  {secondaryActionLabel}
+                </Button>
+              )}
+              <Button
+                onClick={action}
+                disabled={disabled}
+                loading={loading}
+              >
+                {actionLabel}
+              </Button>
+            </div>
           </section>
         </div>
       </div>

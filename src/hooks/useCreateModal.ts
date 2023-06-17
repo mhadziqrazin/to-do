@@ -1,12 +1,12 @@
 import { create } from "zustand"
 
-interface CreateModalProps {
+interface UseCreateModalProps {
   isOpen: boolean
   onOpen: () => void
   onClose: () => void
 }
 
-const useCreateModal = create<CreateModalProps>((set) => ({
+const useCreateModal = create<UseCreateModalProps>((set) => ({
   isOpen: false,
   onOpen: () => set({isOpen: true}),
   onClose: () => set({isOpen: false})
