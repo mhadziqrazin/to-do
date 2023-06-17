@@ -10,7 +10,7 @@ export default async function CompletedTodos() {
     redirect('/login?callbackUrl=/todos/completed')
   }
 
-  const todos = await getAllToDos(user, '/todos/all')
+  const todos = await getAllToDos(user, '/todos/completed')
 
   return (
     <ToDosModule todos={todos} />

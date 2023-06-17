@@ -10,7 +10,7 @@ export default async function NotYetTodos() {
     redirect('/login?callbackUrl=/todos/not-yet')
   }
 
-  const todos = await getAllToDos(user, '/todos/all')
+  const todos = await getAllToDos(user, '/todos/not-yet')
 
   return (
     <ToDosModule todos={todos} />
