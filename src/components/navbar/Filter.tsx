@@ -1,16 +1,27 @@
 'use client'
 
 import Link from "next/link"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import queryString from "query-string"
-import { useCallback, useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
+import { useCallback, useEffect, useMemo, useState } from "react"
 
 const Filter = () => {
-  const params = useSearchParams()
   const pathname = usePathname()
-  const filter = params?.get('filter') || (pathname === '/' ? 'Feeds' : 'All')
-  const router = useRouter()
 
+  const pathLabel = useMemo(() => {
+    switch (pathname) {
+      case '/':
+        return 'Feeds'
+        
+      case '/todos/all':
+        return 'All'
+
+      case '/todos/not-yet':
+        return 'Not yet'
+
+      case '/todos/completed':
+        return 'Completed'
+    }
+  } , [pathname])
 
   const [open, setOpen] = useState(false)
   const [visible, setVisible] = useState(false)
@@ -25,27 +36,6 @@ const Filter = () => {
       setOpen(false)
     }, 500)
   }, [setOpen, setVisible])
-
-  const handleClick = useCallback((filter: string) => {
-    let query = {}
-
-    if (params) {
-      query = queryString.parse(params.toString())
-    }
-
-    const newQuery = {
-      ...query,
-      filter
-    }
-
-    const url = queryString.stringifyUrl({
-      url: filter === 'Feeds' ? '/' : '/todos',
-      query: newQuery
-    })
-
-    router.push(url)
-    handleClose()
-  }, [params, handleClose, router])
 
   return (
     <>
@@ -90,7 +80,7 @@ const Filter = () => {
           }}
           className="text-primary"
         >
-          {filter}
+          {pathLabel}
         </button>
         {open && (
           <div className="absolute top-[24px]">
@@ -101,36 +91,24 @@ const Filter = () => {
               `}
             >
               <li className="hover:bg-neutral-200 dark:hover:bg-gray w-full">
-                <button
-                  onClick={() => handleClick('All')}
-                  className="w-full py-1 px-3"
-                >
-                  All
-                </button>
-              </li>
-              <li className="hover:bg-neutral-200 dark:hover:bg-gray w-full">
-                <button
-                  onClick={() => handleClick('Not yet')}
-                  className="w-full py-1 px-3"
-                >
-                  Not yet
-                </button>
-              </li>
-              <li className="hover:bg-neutral-200 dark:hover:bg-gray w-full">
-                <button
-                  onClick={() => handleClick('Completed')}
-                  className="w-full py-1 px-3"
-                >
-                  Completed
-                </button>
-              </li>
-              <li className="hover:bg-neutral-200 dark:hover:bg-gray w-full">
-                <button
-                  onClick={() => handleClick('Feeds')}
-                  className="w-full py-1 px-3"
-                >
+                <Link href={'/'} onClick={handleClose} className="flex py-1 px-3 justify-center cursor-pointer">
                   Feeds
-                </button>
+                </Link>
+              </li>
+              <li className="hover:bg-neutral-200 dark:hover:bg-gray w-full">
+                <Link href={'/todos/all'} onClick={handleClose} className="flex py-1 px-3 justify-center cursor-pointer">
+                  All
+                </Link>
+              </li>
+              <li className="hover:bg-neutral-200 dark:hover:bg-gray w-full">
+                <Link href={'/todos/not-yet'} onClick={handleClose} className="flex py-1 px-3 justify-center cursor-pointer">
+                  Not yet
+                </Link>
+              </li>
+              <li className="hover:bg-neutral-200 dark:hover:bg-gray w-full">
+                <Link href={'/todos/completed'} onClick={handleClose} className="flex py-1 px-3 justify-center cursor-pointer">
+                  Completed
+                </Link>
               </li>
             </ul>
           </div>
