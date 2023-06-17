@@ -20,7 +20,7 @@ const ToDosModule: React.FC<ToDosModuleProps> = ({
         <div className="flex items-center">
           <button
             onClick={createModal.onOpen}
-            className="shadow-theme text-primary"
+            className="shadow-theme text-primary hover:scale-110 transition"
           >
             <BsPlusSquareFill size={25} />
           </button>
