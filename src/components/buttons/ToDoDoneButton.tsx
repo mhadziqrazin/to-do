@@ -9,7 +9,7 @@ interface ToDoDoneButtonProps {
 
 const ToDoDoneButton: React.FC<ToDoDoneButtonProps> = ({ todoId, done }) => {
   return (
-    <button>
+    <button className="hover:scale-110 transition">
       {done ? (
         <MdCheckBox size={20} />
       ) : (

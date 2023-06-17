@@ -3,6 +3,7 @@ import { format } from "date-fns"
 import { MdEditDocument } from "react-icons/md"
 import ToDoDeleteButton from "../buttons/ToDoDeleteButton"
 import ToDoDoneButton from "../buttons/ToDoDoneButton"
+import ToDoEditButton from "../buttons/ToDoEditButton"
 
 interface ToDoProps {
   todo: Todo
@@ -33,7 +34,7 @@ const ToDo: React.FC<ToDoProps> = ({ todo }) => {
       </div>
       <section className="flex justify-end gap-1 p-2 text-primary">
         <ToDoDeleteButton todoId={todo.id} />
-        <MdEditDocument size={20} />
+        <ToDoEditButton todoId={todo.id} />
         <ToDoDoneButton todoId={todo.id} done={todo.done} />
       </section>
     </div>
