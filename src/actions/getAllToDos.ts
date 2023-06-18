@@ -18,7 +18,8 @@ const getAllToDos = async (user: User, path: string) => {
 
   try {
     const res = await prisma.todo.findMany({
-      where: query
+      where: query,
+      orderBy: {dueAt: 'asc'}
     })
 
     return res || []
