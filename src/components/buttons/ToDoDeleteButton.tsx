@@ -12,7 +12,10 @@ const ToDoDeleteButton: React.FC<ToDoDeleteButtonProps> = ({ todoId }) => {
 
   return (
     <button
-      onClick={deleteModal.onOpen}
+      onClick={() => {
+        deleteModal.setId(todoId)
+        deleteModal.onOpen()
+      }}
       className="hover:scale-110 transition"
     >
       <MdOutlineDelete size={20} />

@@ -37,8 +37,8 @@ const LoginModule = () => {
         redirect: false
       })
       if (res?.ok) {
-        toast.success('Logged in')
         router.push(callbackUrl)
+        toast.success('Logged in')
         router.refresh()
       } else {
         toast.error(res?.error as string)
