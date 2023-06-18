@@ -1,15 +1,38 @@
 'use client'
 
+import updateToDo from "@/actions/doneToDo"
+import { useRouter } from "next/navigation"
+import { Dispatch, SetStateAction } from "react"
+import { toast } from "react-hot-toast"
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md"
 
 interface ToDoDoneButtonProps {
   todoId: string
   done: boolean
+  setDone: Dispatch<SetStateAction<boolean>>
 }
 
-const ToDoDoneButton: React.FC<ToDoDoneButtonProps> = ({ todoId, done }) => {
+const ToDoDoneButton: React.FC<ToDoDoneButtonProps> = ({ todoId, done, setDone }) => {
+  const router = useRouter()
+
+  const handleDone = async () => {
+    try {
+
+      setDone(!done)
+      await updateToDo(todoId, !done)
+
+      router.refresh()
+
+    } catch (err) {
+      toast.error('Something went wrong')
+    }
+  }
+
   return (
-    <button className="hover:scale-110 transition">
+    <button
+      onClick={handleDone}
+      className="hover:scale-110 transition"
+    >
       {done ? (
         <MdCheckBox size={20} />
       ) : (

@@ -1,22 +1,29 @@
+'use client'
+
 import { Todo } from "@prisma/client"
 import ToDoDeleteButton from "../buttons/ToDoDeleteButton"
 import ToDoDoneButton from "../buttons/ToDoDoneButton"
 import ToDoEditButton from "../buttons/ToDoEditButton"
+import { useState } from "react"
 
 interface ToDoProps {
   todo: Todo
 }
 
 const ToDo: React.FC<ToDoProps> = ({ todo }) => {
+  const [done, setDone] = useState(todo.done)
+
+  
+  
   return (
     <div className={`
         group rounded-xl overflow-hidden bg-theme border-2
-        ${todo.done ? 'border-dark/70 dark:border-white/70' : 'boder-dark dark:border-white'}
+        ${done ? 'border-dark/70 dark:border-white/70' : 'boder-dark dark:border-white'}
       `}
     >
-      <div className={`${todo.done && 'opacity-70'}`}>
+      <div className={`${done && 'opacity-70'}`}>
         <section className={`bg-invert-theme text-invert-theme p-2`}>
-          <p className={`font-semibold text-2xl capitalize ${todo.done && 'line-through decoration-2'}`}
+          <p className={`font-semibold text-2xl capitalize ${done && 'line-through decoration-2'}`}
           >
             {todo.title}
           </p>
@@ -33,7 +40,7 @@ const ToDo: React.FC<ToDoProps> = ({ todo }) => {
       <section className="flex justify-end gap-1 p-2 text-primary">
         <ToDoDeleteButton todoId={todo.id} />
         <ToDoEditButton todoId={todo.id} />
-        <ToDoDoneButton todoId={todo.id} done={todo.done} />
+        <ToDoDoneButton todoId={todo.id} done={done} setDone={setDone} />
       </section>
     </div>
   )
