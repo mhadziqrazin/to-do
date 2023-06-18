@@ -13,7 +13,7 @@ const useDeleteModal = create<UseDeleteModalProps>((set) => ({
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
   id: '',
-  setId: (id: string) => set({ id })
+  setId: (id: string) => set({ id }),
 }))
 
 export default useDeleteModal

@@ -3,9 +3,10 @@
 import useDeleteModal from "@/hooks/useDeleteModal"
 import Modal from "./Modal"
 import { useState } from "react"
-import deleteToDo from "@/actions/deleteToDo"
 import { useRouter } from "next/navigation"
 import { toast } from "react-hot-toast"
+import getUser from "@/actions/getUser"
+import axios from "axios"
 
 
 
@@ -18,9 +19,14 @@ const DeleteModal = () => {
     setLoading(true)
 
     try {
-      deleteToDo(deleteModal.id)
-      toast.success('To Do deleted')
-      router.refresh()
+      const res = await axios.delete(`/api/delete/${deleteModal.id}`)
+
+      if (res.status === 200) {
+        toast.success('To Do list deleted')
+        router.refresh()
+      } else {
+        toast.error('Something went wrong')
+      }
     } catch (err) {
       toast.error('Something went wrong')
     }

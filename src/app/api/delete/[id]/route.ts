@@ -22,14 +22,14 @@ export async function DELETE(
       return NextResponse.json({ error: 'Invalid ID!' }, { status: 400 })
     }
 
-    const res = await prisma.todo.delete({
+    await prisma.todo.delete({
       where: {
         id
       }
     })
 
-    return NextResponse.json({ deletedToDo: res }, { status: 204 })
-    
+    return NextResponse.json({ message: 'Deleted' }, { status: 200 })
+
   } catch (err) {
     return NextResponse.json({ error: 'Something went wrong' }, { status: 500 })
   }
