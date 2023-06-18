@@ -12,12 +12,16 @@ const DeleteModal = () => {
     <Modal
       isOpen={deleteModal.isOpen}
       title="Are you sure want to delete?"
-      action={() => {}}
+      action={() => { }}
       actionLabel="Delete"
       onClose={deleteModal.onClose}
       disabled={false}
       loading={loading}
-    />
+    >
+      <p className="text-center text-secondary-theme">
+        You can&apos;t undo this action
+      </p>
+    </Modal>
   )
 }
 
