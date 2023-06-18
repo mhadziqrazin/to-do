@@ -41,10 +41,11 @@ const LoginModule = () => {
         toast.success('Logged in')
         router.refresh()
       } else {
-        toast.error(res?.error as string)
+        toast.error('Something went wrong')
       }
     } catch (err) {
       console.log(err)
+      toast.error('Something went wrong')
     }
 
     setLoading(false)
