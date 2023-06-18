@@ -1,5 +1,4 @@
 import { Todo } from "@prisma/client"
-import { format } from "date-fns"
 import { MdEditDocument } from "react-icons/md"
 import ToDoDeleteButton from "../buttons/ToDoDeleteButton"
 import ToDoDoneButton from "../buttons/ToDoDoneButton"
@@ -26,7 +25,7 @@ const ToDo: React.FC<ToDoProps> = ({ todo }) => {
         </section>
         <section className="p-2 text-lg font-semibold">
           <p className="text-xs opacity-70 pb-4">
-            <span className="font-light">Due at</span> {format(todo.dueAt, 'EEEE, MMMM do, yyyy - HH:mm')}
+            <span className="font-light">Due at</span> {todo.dueAt.toLocaleString('en-GB', { dateStyle: 'full', timeStyle: 'short', hour12: false})}
           </p>
           <p className="font-light">
             {todo.description}
