@@ -30,8 +30,12 @@ const DeleteModal = () => {
     } catch (err) {
       toast.error('Something went wrong')
     }
-
-    deleteModal.onClose()
+    
+    deleteModal.setVisible(false)
+    setTimeout(() => {
+      deleteModal.onClose()
+    }, 300)
+    
     setLoading(false)
   }
 
@@ -44,6 +48,8 @@ const DeleteModal = () => {
       onClose={deleteModal.onClose}
       disabled={false}
       loading={loading}
+      visible={deleteModal.visible}
+      setVisible={deleteModal.setVisible}
     >
       <p className="text-center text-secondary-theme">
         You can&apos;t undo this action

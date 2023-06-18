@@ -16,7 +16,7 @@ const CreateModal = () => {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-  const { register, watch, handleSubmit, setValue } = useForm<FieldValues>({
+  const { register, watch, handleSubmit, setValue, reset } = useForm<FieldValues>({
     defaultValues: {
       title: '',
       description: '',
@@ -45,10 +45,16 @@ const CreateModal = () => {
 
     try {
       const res = await axios.post('/api/create', data)
+
       if (res.status == 201) {
         toast.success('To do list created')
         router.refresh()
-        createModal.onClose()
+        reset()
+        createModal.setVisible(false)
+        setTimeout(() => {
+          createModal.onClose()
+        }, 300)
+
       } else {
         toast.error(res.data.error as string)
       }
@@ -68,6 +74,8 @@ const CreateModal = () => {
       onClose={createModal.onClose}
       disabled={disabledButton}
       loading={loading}
+      visible={createModal.visible}
+      setVisible={createModal.setVisible}
     >
       <InputText
         id="title"

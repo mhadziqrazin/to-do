@@ -15,15 +15,18 @@ interface ModalProps {
   loading: boolean
   secondaryAction?: () => void
   secondaryActionLabel?: string
+  visible: boolean
+  setVisible: (value: boolean) => void
 }
 
 const Modal: React.FC<ModalProps> = ({
-  isOpen, title, action, actionLabel, onClose, children, disabled, loading, secondaryAction, secondaryActionLabel
+  isOpen, title, action, actionLabel, onClose, children, disabled, loading, secondaryAction, secondaryActionLabel, visible, setVisible
 }) => {
-  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    setVisible(isOpen)
+    setTimeout(() => {
+      setVisible(isOpen)
+    }, 0)
   }, [isOpen])
 
   const handleClose = useCallback(() => {
