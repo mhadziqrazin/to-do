@@ -1,5 +1,5 @@
 import getUser from "@/actions/getUser";
-import client from "@/libs/prisma";
+import prisma from "@/libs/prismadb";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Invalid payload' }, { status: 400 })
     }
 
-    const res = await client.todo.create({
+    const res = await prisma.todo.create({
       data: {
         title,
         description,

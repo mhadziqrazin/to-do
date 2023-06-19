@@ -5,11 +5,13 @@ import Filter from "./Filter"
 import { MdLogin } from "react-icons/md"
 import getUser from "@/actions/getUser"
 import LogoutButton from "../buttons/LogoutButton"
+import { User } from "@prisma/client"
 
-interface NavProps { }
+interface NavProps {
+  user: User | null
+}
 
-const Nav: React.FC<NavProps> = async () => {
-  const user = await getUser()
+const Nav: React.FC<NavProps> = ({ user }) => {
 
   return (
     <nav className="shadow-theme bg-theme z-10 sticky w-full top-0">
