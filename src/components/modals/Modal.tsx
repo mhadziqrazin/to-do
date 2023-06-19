@@ -27,7 +27,7 @@ const Modal: React.FC<ModalProps> = ({
     setTimeout(() => {
       setVisible(isOpen)
     }, 0)
-  }, [isOpen])
+  }, [isOpen, setVisible])
 
   const handleClose = useCallback(() => {
     setVisible(false)

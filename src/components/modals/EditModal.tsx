@@ -29,7 +29,7 @@ const EditModal = () => {
     setValue('title', editModal.title)
     setValue('description', editModal.description)
     setValue('dueAt', dateFormat(editModal.dueAt, 'yyyy-mm-dd HH:MM'))
-  }, [editModal.title, editModal.description, editModal.dueAt])
+  }, [editModal.title, editModal.description, editModal.dueAt, setValue])
 
   const title = watch('title')
   const description = watch('description')
