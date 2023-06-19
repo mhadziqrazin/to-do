@@ -1,6 +1,6 @@
 'use server'
 
-import prisma from "../libs/prisma"
+import prisma from "@/libs/prisma"
 import { User } from "@prisma/client"
 
 const getAllToDos = async (user: User, path: string) => {
