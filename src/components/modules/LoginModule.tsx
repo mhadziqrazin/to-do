@@ -40,8 +40,10 @@ const LoginModule = () => {
         router.push(callbackUrl)
         toast.success('Logged in')
         router.refresh()
+      } else if (res?.status === 401) {
+        toast.error(res?.error as string)
       } else {
-        toast.error('Something went wrong')
+        throw new Error()
       }
     } catch (err) {
       console.log(err)

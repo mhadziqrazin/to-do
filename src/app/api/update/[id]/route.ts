@@ -1,5 +1,5 @@
 import getUser from "@/actions/getUser"
-import { prisma } from "@/libs/prisma"
+import prisma from "@/libs/prisma"
 import { NextResponse } from "next/server"
 
 interface UpdateParams {

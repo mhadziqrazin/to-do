@@ -1,6 +1,6 @@
 'use server'
 
-import { prisma } from "@/libs/prisma"
+import prisma from "@/libs/prisma"
 
 const updateToDo = async (id: string, done: boolean) => {
   await prisma.todo.update({
