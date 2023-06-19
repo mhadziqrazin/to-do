@@ -1,6 +1,6 @@
 'use server'
 
-import prisma from "@/libs/prismadb"
+import prisma from "../libs/prismadb"
 
 const updateToDo = async (id: string, done: boolean) => {
   await prisma.todo.update({

@@ -1,7 +1,7 @@
 'use server'
 
-import prisma from "@/libs/prismadb"
-import { authOptions } from "@/pages/api/auth/[...nextauth]"
+import prisma from "../libs/prismadb"
+import { authOptions } from "../pages/api/auth/[...nextauth]"
 import { getServerSession } from "next-auth"
 
 const getUser = async () => {
