@@ -1,6 +1,6 @@
 'use server'
 
-import client from "@/libs/prisma"
+import client from "@/libs/prismadb"
 
 const updateToDo = async (id: string, done: boolean) => {
   await client.todo.update({

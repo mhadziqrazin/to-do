@@ -1,6 +1,6 @@
 'use server'
 
-import client from "@/libs/prisma"
+import client from "@/libs/prismadb"
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { getServerSession } from "next-auth"
 
