@@ -1,9 +1,9 @@
 'use server'
 
-import client from "@/libs/prismadb"
+import prisma from "@/libs/prismadb"
 
 const updateToDo = async (id: string, done: boolean) => {
-  await client.todo.update({
+  await prisma.todo.update({
     where: {
       id
     },

@@ -1,5 +1,5 @@
 import getUser from "@/actions/getUser"
-import client from "@/libs/prismadb"
+import prisma from "@/libs/prismadb"
 import { NextResponse } from "next/server"
 
 interface UpdateParams {
@@ -26,7 +26,7 @@ export async function PUT(req: Request, { params }: { params: UpdateParams }) {
       return NextResponse.json({ error: 'Invalid payload' })
     }
 
-    const res = await client.todo.update({
+    const res = await prisma.todo.update({
       where: {
         id
       },
