@@ -5,7 +5,6 @@ import Modal from "./Modal"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { toast } from "react-hot-toast"
-import getUser from "@/actions/getUser"
 import axios from "axios"
 
 

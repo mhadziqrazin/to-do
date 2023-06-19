@@ -5,6 +5,7 @@ import Theme from '@/components/providers/Theme'
 import { Toaster } from 'react-hot-toast'
 import CreateModal from '@/components/modals/CreateModal'
 import DeleteModal from '@/components/modals/DeleteModal'
+import EditModal from '@/components/modals/EditModal'
 
 const font = Poppins({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] })
 
@@ -25,6 +26,7 @@ export default function RootLayout({
           <Toaster />
           <CreateModal />
           <DeleteModal />
+          <EditModal />
           <Nav />
           <div className='container mx-auto px-4 py-16'>
             {children}

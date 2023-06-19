@@ -13,8 +13,8 @@ interface ToDoProps {
 const ToDo: React.FC<ToDoProps> = ({ todo }) => {
   const [done, setDone] = useState(todo.done)
 
-  
-  
+
+
   return (
     <div className={`
         group rounded-xl overflow-hidden bg-theme border-2
@@ -39,7 +39,7 @@ const ToDo: React.FC<ToDoProps> = ({ todo }) => {
       </div>
       <section className="flex justify-end gap-1 p-2 text-primary">
         <ToDoDeleteButton todoId={todo.id} />
-        <ToDoEditButton todoId={todo.id} />
+        <ToDoEditButton todo={todo} />
         <ToDoDoneButton todoId={todo.id} done={done} setDone={setDone} />
       </section>
     </div>

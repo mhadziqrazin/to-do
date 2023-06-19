@@ -56,7 +56,7 @@ const CreateModal = () => {
         }, 300)
 
       } else {
-        toast.error(res.data.error as string)
+        throw new Error()
       }
     } catch {
       toast.error('Something went wrong')
