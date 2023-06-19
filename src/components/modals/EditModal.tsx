@@ -63,7 +63,7 @@ const EditModal = () => {
         throw new Error()
       }
       
-      toast.success('To do list created')
+      toast.success('To do list updated')
       router.refresh()
       reset()
       editModal.setVisible(false)
