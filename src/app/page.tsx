@@ -8,7 +8,7 @@ export default async function Home() {
       <section className="grid page-center">
         <div className="justify-center text-center">
           <h1 className="text-2xl">
-            Hi, <span className="font-semibold text-primary">{user ? user.name : 'newcomer!'}</span>!
+            Hi, <span className="font-semibold text-primary">{user ? user.name : 'newcomer'}</span>!
           </h1>
           {user &&
             <>
