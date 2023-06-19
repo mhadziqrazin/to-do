@@ -1,6 +1,6 @@
 'use server'
 
-import prisma from "@/libs/prisma"
+import client from "@/libs/prisma"
 import { User } from "@prisma/client"
 
 const getAllToDos = async (user: User, path: string) => {
@@ -17,7 +17,7 @@ const getAllToDos = async (user: User, path: string) => {
   }
 
   try {
-    const res = await prisma.todo.findMany({
+    const res = await client.todo.findMany({
       where: query,
       orderBy: {dueAt: 'asc'}
     })

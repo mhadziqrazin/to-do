@@ -1,6 +1,6 @@
 'use server'
 
-import prisma from "@/libs/prisma"
+import client from "@/libs/prisma"
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { getServerSession } from "next-auth"
 
@@ -12,7 +12,7 @@ const getUser = async () => {
       return null
     }
 
-    const user = await prisma.user.findUnique({
+    const user = await client.user.findUnique({
       where: {
         id: session.id
       }

@@ -1,4 +1,4 @@
-import prisma from "@/libs/prisma";
+import client from "@/libs/prisma";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -6,7 +6,7 @@ import bcrypt from "bcrypt"
 import NextAuth from "next-auth/next";
 
 export const authOptions: AuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(client),
   providers: [
     CredentialsProvider({
       name: 'credentials',
@@ -19,7 +19,7 @@ export const authOptions: AuthOptions = {
           throw new Error('Invalid credentials!')
         }
 
-        const user = await prisma.user.findUnique({
+        const user = await client.user.findUnique({
           where: {
             username: credentials.username
           }

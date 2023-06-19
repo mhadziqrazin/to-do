@@ -1,5 +1,5 @@
 import getUser from "@/actions/getUser"
-import prisma from "@/libs/prisma"
+import client from "@/libs/prisma"
 import { NextResponse } from "next/server"
 
 interface DeleteParams {
@@ -22,7 +22,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Invalid ID!' }, { status: 400 })
     }
 
-    await prisma.todo.delete({
+    await client.todo.delete({
       where: {
         id
       }
