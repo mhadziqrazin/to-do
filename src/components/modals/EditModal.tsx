@@ -108,7 +108,7 @@ const EditModal = () => {
       <InputDateTime
         id="dueAt"
         onChange={setDate}
-        defaultValue={editModal.dueAt.toLocaleString()}
+        defaultValue={editModal.dueAt}
       />
       <TextArea
         id="description"
