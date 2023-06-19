@@ -2,26 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.page-center {
+  @apply
+    flex flex-col min-h-[calc(100vh-192px)] items-center justify-center
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.w-one {
+  @apply
+    w-full sm:w-3/4 md:w-7/12 xl:w-4/12
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.bg-theme {
+  @apply
+  bg-white dark:bg-dark
+}
+
+.bg-invert-theme {
+  @apply
+    bg-dark dark:bg-white
+}
+
+.bg-gray-theme {
+  @apply
+    bg-neutral-200 dark:bg-gray
+}
+
+.shadow-theme {
+  @apply
+    shadow-md dark:shadow-black/20
+}
+
+.text-secondary-theme {
+  @apply
+    text-neutral-600 dark:text-neutral-300
+}
+
+.text-gray-theme {
+  @apply
+    text-black/30 dark:text-white/30
+}
+
+.text-invert-theme {
+  @apply
+    text-white dark:text-dark
+}
+
+.border-1-theme {
+  @apply
+    border-[1px]
+    border-neutral-200
+    dark:border-gray
+}
+
+.border-2-theme {
+  @apply
+    border-2
+    border-neutral-200
+    dark:border-gray
+}
+
+.border-focus-theme {
+  @apply
+    focus:border-black dark:focus:border-white
+    transition
+}
+
+.hover-primary-theme {
+  @apply
+    text-white
+    bg-primary
+    hover:bg-transparent
+    hover:text-primary
+    transition duration-200
+}
+
+.hover-secondary-theme {
+  @apply
+    text-primary
+    bg-transparent
+    hover:bg-primary
+    hover:text-white
+    transition duration-200
 }
