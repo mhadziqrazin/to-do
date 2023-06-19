@@ -1,13 +1,13 @@
 import dateFormat from "dateformat"
+import { FieldValues, UseFormRegister } from "react-hook-form"
 
 interface InputTextProps {
   id: string
-  onChange: (id: string, value: string) => void
-  defaultValue?: Date
+  register: UseFormRegister<FieldValues>
 }
 
 const InputDateTime: React.FC<InputTextProps> = ({
-  id, onChange, defaultValue = new Date()
+  id, register
 }) => {
   return (
     <input
@@ -15,8 +15,7 @@ const InputDateTime: React.FC<InputTextProps> = ({
       className={`
         text-lg p-4 border-2-theme border-focus-theme bg-theme outline-none rounded-xl
       `}
-      value={dateFormat(defaultValue, "yyyy-mm-dd HH:MM")}
-      onChange={(e) => onChange(id, e.target.value)}
+      {...register(id, { required: true })}
     />
   )
 }

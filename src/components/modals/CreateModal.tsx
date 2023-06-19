@@ -5,11 +5,12 @@ import InputText from "../inputs/InputText"
 import Modal from "./Modal"
 import useCreateModal from "@/hooks/useCreateModal"
 import TextArea from "../inputs/TextArea"
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import InputDateTime from "../inputs/InputDateTime"
 import { toast } from "react-hot-toast"
 import axios from "axios"
 import { useRouter } from "next/navigation"
+import dateFormat from "dateformat"
 
 const CreateModal = () => {
   const createModal = useCreateModal()
@@ -20,21 +21,17 @@ const CreateModal = () => {
     defaultValues: {
       title: '',
       description: '',
-      dueAt: new Date()
+      dueAt: dateFormat(new Date(), 'yyyy-mm-dd HH:MM')
     }
   })
 
+  useEffect(() => {
+    setValue('dueAt', dateFormat(new Date(), 'yyyy-mm-dd HH:MM'))
+  }, [])
+
   const title = watch('title')
   const description = watch('description')
-  const dueAt = watch('dueAt') as string
-
-  const setDate = (id: string, value: string) => {
-    setValue(id, new Date(value), {
-      shouldDirty: true,
-      shouldTouch: true,
-      shouldValidate: true
-    })
-  }
+  const dueAt = watch('dueAt')
 
   const disabledButton = useMemo(() => {
     return (title === '') || (description === '') || (dueAt === '')
@@ -44,12 +41,15 @@ const CreateModal = () => {
     setLoading(true)
 
     try {
+      data.dueAt = new Date(data.dueAt)
+
       const res = await axios.post('/api/create', data)
 
       if (res.status == 201) {
         toast.success('To do list created')
         router.refresh()
         reset()
+        setValue('dueAt', dateFormat(new Date(), 'yyyy-mm-dd HH:MM'))
         createModal.setVisible(false)
         setTimeout(() => {
           createModal.onClose()
@@ -84,7 +84,7 @@ const CreateModal = () => {
       />
       <InputDateTime
         id="dueAt"
-        onChange={setDate}
+        register={register}
       />
       <TextArea
         id="description"

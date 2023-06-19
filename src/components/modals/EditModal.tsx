@@ -10,6 +10,7 @@ import { toast } from "react-hot-toast"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import UseEditModal from "@/hooks/useEditModal"
+import dateFormat from "dateformat"
 
 const EditModal = () => {
   const editModal = UseEditModal()
@@ -20,27 +21,19 @@ const EditModal = () => {
     defaultValues: {
       title: editModal.title,
       description: editModal.description,
-      dueAt: editModal.dueAt
+      dueAt: dateFormat(editModal.dueAt, 'yyyy-mm-dd HH:MM')
     }
   })
 
   useEffect(() => {
     setValue('title', editModal.title)
     setValue('description', editModal.description)
-    setValue('dueAt', new Date(editModal.dueAt))
+    setValue('dueAt', dateFormat(editModal.dueAt, 'yyyy-mm-dd HH:MM'))
   }, [editModal.title, editModal.description, editModal.dueAt])
 
   const title = watch('title')
   const description = watch('description')
   const dueAt = watch('dueAt') as string
-
-  const setDate = (id: string, value: string) => {
-    setValue(id, new Date(value), {
-      shouldDirty: true,
-      shouldTouch: true,
-      shouldValidate: true
-    })
-  }
 
   const disabledButton = useMemo(() => {
     return (title === '') || (description === '') || (dueAt === '')
@@ -48,8 +41,7 @@ const EditModal = () => {
 
   const handleEdit: SubmitHandler<FieldValues> = async (data) => {
     setLoading(true)
-    console.log(editModal.dueAt)
-    console.log((editModal.dueAt))
+
     try {
       let newData: any = {}
 
@@ -61,8 +53,8 @@ const EditModal = () => {
         newData.description = data.description
       }
 
-      if (data.dueAt.toISOString() !== editModal.dueAt.toISOString()) {
-        newData.dueAt = data.dueAt
+      if (dateFormat(data.dueAt, 'yyyy-mm-dd HH:MM') !== dateFormat(editModal.dueAt, 'yyyy-mm-dd HH:MM')) {
+        newData.dueAt = new Date(data.dueAt)
       }
 
       console.log(newData)
@@ -81,8 +73,9 @@ const EditModal = () => {
       // } else {
       //   throw new Error()
       // }
-    } catch {
-      toast.error('Something went wrong')
+    } catch (err) {
+      console.log(err)
+      toast.error('Something went wronggg')
     }
 
     setLoading(false)
@@ -107,8 +100,7 @@ const EditModal = () => {
       />
       <InputDateTime
         id="dueAt"
-        onChange={setDate}
-        defaultValue={editModal.dueAt}
+        register={register}
       />
       <TextArea
         id="description"
