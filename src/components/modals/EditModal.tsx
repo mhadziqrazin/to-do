@@ -57,25 +57,23 @@ const EditModal = () => {
         newData.dueAt = new Date(data.dueAt)
       }
 
-      console.log(newData)
+      const res = await axios.put(`/api/update/${editModal.id}`, newData)
 
-      // const res = await axios.post('/api/create', data)
+      if (res.status !== 200) {
+        throw new Error()
+      }
+      
+      toast.success('To do list created')
+      router.refresh()
+      reset()
+      editModal.setVisible(false)
+      setTimeout(() => {
+        editModal.onClose()
+      }, 300)
 
-      // if (res.status == 201) {
-      //   toast.success('To do list created')
-      //   router.refresh()
-      //   reset()
-      //   editModal.setVisible(false)
-      //   setTimeout(() => {
-      //     editModal.onClose()
-      //   }, 300)
-
-      // } else {
-      //   throw new Error()
-      // }
     } catch (err) {
       console.log(err)
-      toast.error('Something went wronggg')
+      toast.error('Something went wrong')
     }
 
     setLoading(false)

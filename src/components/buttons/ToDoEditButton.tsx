@@ -13,6 +13,7 @@ const ToDoEditButton: React.FC<ToDoEditButtonProps> = ({ todo }) => {
   return (
     <button
       onClick={() => {
+        editModal.setId(todo.id)
         editModal.setTitle(todo.title)
         editModal.setDescription(todo.description)
         editModal.setDueAt(todo.dueAt)

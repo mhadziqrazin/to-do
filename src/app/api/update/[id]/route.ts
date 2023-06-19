@@ -36,6 +36,7 @@ export async function PUT(req: Request, { params }: { params: UpdateParams }) {
     return NextResponse.json({ todo: res }, { status: 200 })
     
   } catch (err) {
+    console.log(err)
     return NextResponse.json({ error: 'Something went wrong' }, { status: 500 })
   }
 }

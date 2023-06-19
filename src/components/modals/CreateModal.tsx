@@ -45,19 +45,19 @@ const CreateModal = () => {
 
       const res = await axios.post('/api/create', data)
 
-      if (res.status == 201) {
-        toast.success('To do list created')
-        router.refresh()
-        reset()
-        setValue('dueAt', dateFormat(new Date(), 'yyyy-mm-dd HH:MM'))
-        createModal.setVisible(false)
-        setTimeout(() => {
-          createModal.onClose()
-        }, 300)
-
-      } else {
+      if (res.status !== 201) {
         throw new Error()
       }
+
+      toast.success('To do list created')
+      router.refresh()
+      reset()
+      setValue('dueAt', dateFormat(new Date(), 'yyyy-mm-dd HH:MM'))
+      createModal.setVisible(false)
+      setTimeout(() => {
+        createModal.onClose()
+      }, 300)
+
     } catch {
       toast.error('Something went wrong')
     }

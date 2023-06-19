@@ -6,6 +6,8 @@ interface UseEditModalProps {
   onClose: () => void
   visible: boolean
   setVisible: (value: boolean) => void
+  id: string
+  setId: (id: string) => void
   title: string
   setTitle: (title: string) => void
   description: string
@@ -20,6 +22,8 @@ const UseEditModal = create<UseEditModalProps>((set) => ({
   onClose: () => set({ isOpen: false }),
   visible: false,
   setVisible: (visible: boolean) => set({ visible }),
+  id: '',
+  setId: (id: string) => set({ id }),
   title: '',
   setTitle: (title: string) => set({ title }),
   description: '',
