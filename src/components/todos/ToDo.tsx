@@ -32,7 +32,7 @@ const ToDo: React.FC<ToDoProps> = ({ todo }) => {
           <p className="text-xs opacity-70 pb-4">
             <span className="font-light">Due at</span> {todo.dueAt.toLocaleString('en-GB', { dateStyle: 'full', timeStyle: 'short', hour12: false })}
           </p>
-          <p className="font-light">
+          <p className="font-light whitespace-pre-wrap break-words">
             {todo.description}
           </p>
         </section>
