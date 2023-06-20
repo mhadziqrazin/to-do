@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useCallback, useEffect, useMemo, useState } from "react"
+import { IoIosArrowDown } from "react-icons/io"
 
 const Filter = () => {
   const pathname = usePathname()
@@ -11,7 +12,7 @@ const Filter = () => {
     switch (pathname) {
       case '/':
         return 'Feeds'
-        
+
       case '/todos/all':
         return 'All'
 
@@ -21,7 +22,7 @@ const Filter = () => {
       case '/todos/completed':
         return 'Completed'
     }
-  } , [pathname])
+  }, [pathname])
 
   const [open, setOpen] = useState(false)
   const [visible, setVisible] = useState(false)
@@ -78,9 +79,10 @@ const Filter = () => {
               handleClose()
             }
           }}
-          className="text-primary"
+          className="text-primary flex gap-1 items-center"
         >
           {pathLabel}
+          <IoIosArrowDown className={`${visible && 'rotate-180'} transition duration-300`} />
         </button>
         {open && (
           <div className="absolute top-[24px]">
