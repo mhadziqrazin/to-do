@@ -49,13 +49,13 @@ const ToDosModule: React.FC<ToDosModuleProps> = ({
         <div className="flex items-center justify-center gap-4">
           <button
             onClick={createModal.onOpen}
-            className="shadow-theme text-primary hover:scale-110 transition bg-white rounded-full"
+            className="shadow-theme text-primary hover:scale-110 transition"
           >
             <BsPlusSquareFill size={32} />
           </button>
           <button
             onClick={() => handleSort(sort === 'asc' ? 'desc' : 'asc')}
-            className="flex items-center justify-center w-full bg-primary text-white shadow-theme rounded-md h-[32px] p-1 hover:scale-[1.02] transition"
+            className="flex items-center justify-center w-full bg-primary text-invert-theme shadow-theme rounded-md h-[32px] p-1 hover:scale-[1.02] transition"
           >
             <p className="font-medium">
               Due date
