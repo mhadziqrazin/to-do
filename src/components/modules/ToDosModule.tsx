@@ -26,9 +26,11 @@ const ToDosModule: React.FC<ToDosModuleProps> = ({
             <BsPlusSquareFill size={25} />
           </button>
           <button
-            className="flex items-center justify-center w-full bg-primary shadow-theme rounded-md h-[25px]"
+            className="flex items-center justify-center w-full bg-primary text-white shadow-theme rounded-md h-[25px]"
           >
-            Due date
+            <p>
+              Due date
+            </p>
             <IoIosArrowDown />
           </button>
         </div>
