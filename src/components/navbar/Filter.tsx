@@ -9,9 +9,15 @@ const Filter = () => {
   const pathname = usePathname()
   const params = useSearchParams()
   const sort = params?.get('sort') || 'asc'
+  const callbackUrl = params?.get('callbackUrl')
 
   const pathLabel = useMemo(() => {
-    switch (pathname) {
+    let cases = pathname
+    if (cases === '/login' || cases === '/register') {
+      cases = callbackUrl || '/'
+    }
+
+    switch (cases) {
       case '/':
         return 'Feeds'
 
@@ -95,22 +101,22 @@ const Filter = () => {
               `}
             >
               <li className="hover:bg-neutral-200 dark:hover:bg-gray w-full">
-                <Link href={'/'} onClick={handleClose} className="flex py-1 px-3 justify-center cursor-pointer">
+                <Link href={`/?sort=${sort}`} onClick={handleClose} className="flex py-1 px-3 justify-center cursor-pointer">
                   Feeds
                 </Link>
               </li>
               <li className="hover:bg-neutral-200 dark:hover:bg-gray w-full">
-                <Link href={'/todos/all'} onClick={handleClose} className="flex py-1 px-3 justify-center cursor-pointer">
+                <Link href={`/todos/all?sort=${sort}`} onClick={handleClose} className="flex py-1 px-3 justify-center cursor-pointer">
                   All
                 </Link>
               </li>
               <li className="hover:bg-neutral-200 dark:hover:bg-gray w-full">
-                <Link href={'/todos/not-yet'} onClick={handleClose} className="flex py-1 px-3 justify-center cursor-pointer">
+                <Link href={`/todos/not-yet?sort=${sort}`} onClick={handleClose} className="flex py-1 px-3 justify-center cursor-pointer">
                   Not yet
                 </Link>
               </li>
               <li className="hover:bg-neutral-200 dark:hover:bg-gray w-full">
-                <Link href={'/todos/completed'} onClick={handleClose} className="flex py-1 px-3 justify-center cursor-pointer">
+                <Link href={`/todos/completed?sort=${sort}`} onClick={handleClose} className="flex py-1 px-3 justify-center cursor-pointer">
                   Completed
                 </Link>
               </li>

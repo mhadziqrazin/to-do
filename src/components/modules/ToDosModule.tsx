@@ -41,7 +41,7 @@ const ToDosModule: React.FC<ToDosModuleProps> = ({
     })
 
     router.push(url)
-  }, [sort, params, router, path])
+  }, [params, router, path])
 
   return (
     <main className="flex flex-col items-center">
