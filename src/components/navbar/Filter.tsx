@@ -1,12 +1,14 @@
 'use client'
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useSearchParams } from "next/navigation"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { IoIosArrowDown } from "react-icons/io"
 
 const Filter = () => {
   const pathname = usePathname()
+  const params = useSearchParams()
+  const sort = params?.get('sort') || 'asc'
 
   const pathLabel = useMemo(() => {
     switch (pathname) {
@@ -41,28 +43,28 @@ const Filter = () => {
   return (
     <>
       <div className="hidden sm:flex items-center text-gray-theme gap-4">
-        <Link href={'/'} className={`
+        <Link href={`/?sort=${sort}`} className={`
           hover:text-primary transition
             ${pathname === '/' && 'text-primary'}
           `}
         >
           Feeds
         </Link>
-        <Link href={'/todos/all'} className={`
+        <Link href={`/todos/all?sort=${sort}`} className={`
           hover:text-primary transition
             ${pathname === '/todos/all' && 'text-primary'}
           `}
         >
           All
         </Link>
-        <Link href={'/todos/not-yet'} className={`
+        <Link href={`/todos/not-yet?sort=${sort}`} className={`
           hover:text-primary transition
             ${pathname === '/todos/not-yet' && 'text-primary'}
           `}
         >
           Not yet
         </Link>
-        <Link href={'/todos/completed'} className={`
+        <Link href={`/todos/completed?sort=${sort}`} className={`
           hover:text-primary transition
             ${pathname === '/todos/completed' && 'text-primary'}
           `}
