@@ -10,9 +10,10 @@ interface ToDoDoneButtonProps {
   todoId: string
   done: boolean
   setDone: Dispatch<SetStateAction<boolean>>
+  disabled: boolean
 }
 
-const ToDoDoneButton: React.FC<ToDoDoneButtonProps> = ({ todoId, done, setDone }) => {
+const ToDoDoneButton: React.FC<ToDoDoneButtonProps> = ({ todoId, done, setDone, disabled }) => {
   const router = useRouter()
 
   const handleDone = async () => {
@@ -30,8 +31,9 @@ const ToDoDoneButton: React.FC<ToDoDoneButtonProps> = ({ todoId, done, setDone }
 
   return (
     <button
+      disabled={disabled}
       onClick={handleDone}
-      className="hover:scale-110 transition"
+      className="hover:scale-110 transition disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
     >
       {done ? (
         <MdCheckBox size={20} />
