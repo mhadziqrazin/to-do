@@ -1,6 +1,6 @@
 'use client'
 
-import { Todo, User } from "@prisma/client"
+import { Feed, Todo, User } from "@prisma/client"
 import useCreateModal from "@/hooks/useCreateModal"
 import { BsPlusSquareFill } from "react-icons/bs"
 import ToDo from "../todos/ToDo"
@@ -10,7 +10,7 @@ import { useCallback } from "react"
 import queryString from "query-string"
 
 interface ToDosModuleProps {
-  todos: Todo[]
+  todos: (Todo & {feed: Feed | null})[]
 }
 
 const ToDosModule: React.FC<ToDosModuleProps> = ({

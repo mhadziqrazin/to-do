@@ -8,9 +8,7 @@ import { useState } from "react"
 import ToDoShareButton from "../buttons/ToDoShareButton"
 
 interface ToDoProps {
-  todo: Todo & {
-    feed: Feed
-  }
+  todo: Todo & { feed: Feed | null }
 }
 
 const ToDo: React.FC<ToDoProps> = ({ todo }) => {
