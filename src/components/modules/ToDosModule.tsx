@@ -4,7 +4,7 @@ import { Todo, User } from "@prisma/client"
 import useCreateModal from "@/hooks/useCreateModal"
 import { BsPlusSquareFill } from "react-icons/bs"
 import ToDo from "../todos/ToDo"
-import { IoIosArrowDown } from "react-icons/io"
+import { IoMdArrowDropdown } from "react-icons/io"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useCallback } from "react"
 import queryString from "query-string"
@@ -57,10 +57,10 @@ const ToDosModule: React.FC<ToDosModuleProps> = ({
             onClick={() => handleSort(sort === 'asc' ? 'desc' : 'asc')}
             className="flex items-center justify-center w-full bg-primary text-white shadow-theme rounded-md h-[32px] p-1 hover:scale-[1.02] transition"
           >
-            <p>
+            <p className="font-medium">
               Due date
             </p>
-            <IoIosArrowDown />
+            <IoMdArrowDropdown size={20} className={`${sort === 'asc' && 'rotate-180'} transition duration-300`} />
           </button>
         </div>
         {todos.map((todo) => (
