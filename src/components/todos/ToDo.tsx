@@ -1,19 +1,20 @@
 'use client'
 
-import { Todo } from "@prisma/client"
+import { Feed, Todo } from "@prisma/client"
 import ToDoDeleteButton from "../buttons/ToDoDeleteButton"
 import ToDoDoneButton from "../buttons/ToDoDoneButton"
 import ToDoEditButton from "../buttons/ToDoEditButton"
 import { useState } from "react"
+import ToDoShareButton from "../buttons/ToDoShareButton"
 
 interface ToDoProps {
-  todo: Todo
+  todo: Todo & {
+    feed: Feed
+  }
 }
 
 const ToDo: React.FC<ToDoProps> = ({ todo }) => {
   const [done, setDone] = useState(todo.done)
-
-
 
   return (
     <div className={`
@@ -41,6 +42,9 @@ const ToDo: React.FC<ToDoProps> = ({ todo }) => {
         <ToDoDeleteButton todoId={todo.id} />
         <ToDoEditButton todo={todo} />
         <ToDoDoneButton todoId={todo.id} done={done} setDone={setDone} />
+        {todo.done &&
+          <ToDoShareButton todoId={todo.id} />
+        }
       </section>
     </div>
   )
