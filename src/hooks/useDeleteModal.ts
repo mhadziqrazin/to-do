@@ -8,6 +8,8 @@ interface UseDeleteModalProps {
   setId: (id: string) => void
   visible: boolean
   setVisible: (value: boolean) => void
+  feedId: string
+  setFeedId: (feedId: string) => void
 }
 
 const useDeleteModal = create<UseDeleteModalProps>((set) => ({
@@ -17,7 +19,9 @@ const useDeleteModal = create<UseDeleteModalProps>((set) => ({
   id: '',
   setId: (id: string) => set({ id }),
   visible: false,
-  setVisible: (visible) => set({ visible })
+  setVisible: (visible) => set({ visible }),
+  feedId: '',
+  setFeedId: (feedId: string) => set({ feedId })
 }))
 
 export default useDeleteModal

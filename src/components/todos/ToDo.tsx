@@ -37,7 +37,7 @@ const ToDo: React.FC<ToDoProps> = ({ todo }) => {
         </section>
       </div>
       <section className="flex justify-end gap-1 p-2 text-primary">
-        <ToDoDeleteButton todoId={todo.id} />
+        <ToDoDeleteButton todoId={todo.id} feedId={todo.feed?.id || ''} />
         <ToDoEditButton todo={todo} />
         <ToDoDoneButton todoId={todo.id} done={done} setDone={setDone} disabled={todo.done && !!todo.feed} />
         {todo.done &&
