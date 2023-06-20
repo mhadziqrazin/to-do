@@ -17,7 +17,7 @@ const ToDo: React.FC<ToDoProps> = ({ todo }) => {
 
   return (
     <div className={`
-        group rounded-xl overflow-hidden bg-theme border-2
+        group rounded-xl overflow-hidden bg-theme border-2 shadow-theme
         ${done ? 'border-dark/70 dark:border-white/70' : 'boder-dark dark:border-white'}
       `}
     >
