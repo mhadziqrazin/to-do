@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     const user = await getUser()
 
     if (!user) {
-      return NextResponse.json({ error: 'Login required' }, { status: 401 })
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     const body = await req.json()
@@ -29,6 +29,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ todo: res }, { status: 201 })
 
   } catch (err) {
-    return NextResponse.json({ error: 'Something went wrong' }, { status: 500 })
+    return NextResponse.json({ message: 'Something went wrong', error: err }, { status: 500 })
   }
 }

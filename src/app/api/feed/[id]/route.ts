@@ -2,12 +2,12 @@ import getUser from "@/actions/getUser"
 import prisma from "@/libs/prismadb"
 import { NextResponse } from "next/server"
 
-interface DeleteParams {
+interface FeedParams {
   id: string
 }
 
-export async function DELETE(
-  req: Request, { params }: { params: DeleteParams }
+export async function POST(
+  req: Request, { params }: { params: FeedParams }
 ) {
   try {
     const user = await getUser()
@@ -22,13 +22,14 @@ export async function DELETE(
       return NextResponse.json({ error: 'Invalid ID!' }, { status: 400 })
     }
 
-    await prisma.todo.delete({
-      where: {
-        id
+    const res = await prisma.feed.create({
+      data: {
+        userId: user.id,
+        todoId: id
       }
     })
 
-    return NextResponse.json({ message: 'Deleted' }, { status: 200 })
+    return NextResponse.json({ feed: res }, { status: 201 })
 
   } catch (err) {
     return NextResponse.json({ message: 'Something went wrong', error: err }, { status: 500 })

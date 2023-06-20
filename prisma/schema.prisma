@@ -41,7 +41,7 @@ model Feed {
   id        String   @id @default(uuid()) @map("_id") @db.Uuid
   todoId    String   @unique @db.Uuid
   userId    String   @db.Uuid
-  createdAt DateTime
+  createdAt DateTime @default(now())
 
   todo Todo @relation(fields: [todoId], references: [id], onDelete: Cascade)
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
