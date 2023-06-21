@@ -11,7 +11,7 @@ interface ToDoProps {
   todo: Todo & { feed: Feed | null }
 }
 
-const ToDo: React.FC<ToDoProps> = ({ todo }) => {
+const ToDoCard: React.FC<ToDoProps> = ({ todo }) => {
   const [done, setDone] = useState(todo.done)
 
   return (
@@ -48,4 +48,4 @@ const ToDo: React.FC<ToDoProps> = ({ todo }) => {
   )
 }
 
-export default ToDo
+export default ToDoCard

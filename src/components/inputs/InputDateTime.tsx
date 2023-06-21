@@ -1,4 +1,3 @@
-import dateFormat from "dateformat"
 import { FieldValues, UseFormRegister } from "react-hook-form"
 
 interface InputTextProps {

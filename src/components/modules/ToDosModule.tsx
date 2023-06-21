@@ -3,7 +3,7 @@
 import { Feed, Todo } from "@prisma/client"
 import useCreateModal from "@/hooks/useCreateModal"
 import { BsPlusSquareFill } from "react-icons/bs"
-import ToDo from "../cards/ToDo"
+import ToDoCard from "../cards/ToDoCard"
 import { IoMdArrowDropdown } from "react-icons/io"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useCallback } from "react"
@@ -64,7 +64,7 @@ const ToDosModule: React.FC<ToDosModuleProps> = ({
           </button>
         </div>
         {todos.map((todo) => (
-          <ToDo key={todo.id} todo={todo} />
+          <ToDoCard key={todo.id} todo={todo} />
         ))}
       </section>
     </main>

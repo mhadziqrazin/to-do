@@ -1,8 +1,9 @@
-import { Feed, User } from "@prisma/client"
+import { Feed, Todo, User } from "@prisma/client"
+import FeedCard from "../cards/FeedCard"
 
 interface FeedsModuleProps {
   user: User | null
-  feeds: Feed[]
+  feeds: (Feed & { todo: Todo, user: User })[]
 }
 
 const FeedsModule: React.FC<FeedsModuleProps> = ({
@@ -16,9 +17,9 @@ const FeedsModule: React.FC<FeedsModuleProps> = ({
             Hi, <span className="font-semibold text-primary">{user ? user.name : 'newcomer'}</span>!
           </h1>
         </div>
-        {/* {todos.map((todo) => (
-          <ToDo key={todo.id} todo={todo} />
-        ))} */}
+        {feeds.map((feed) => (
+          <FeedCard key={feed.id} feed={feed} />
+        ))}
       </section>
     </main>
   )
