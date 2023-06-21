@@ -18,16 +18,17 @@ const ToDoCard: React.FC<ToDoProps> = ({ todo }) => {
   return (
     <div className={`
         group rounded-xl overflow-hidden bg-theme border-2 shadow-theme
-        ${done ? 'border-dark/70 dark:border-white/70' : 'boder-dark dark:border-white'}
+        ${done ? 'border-neutral-200/70 dark:border-gray/70' : 'border-neutral-200 dark:border-gray'}
       `}
     >
       <div className={`${done && 'opacity-70'}`}>
-        <section className={`bg-invert-theme text-invert-theme p-2`}>
-          <p className={`font-semibold text-2xl capitalize ${done && 'line-through decoration-2'}`}
+        <section className={`p-2`}>
+          <p className={`font-medium text-xl capitalize ${done && 'line-through decoration-2'}`}
           >
             {todo.title}
           </p>
         </section>
+        <hr className="border-1-theme" />
         <section className="p-2 text-lg font-semibold">
           <p className="text-xs opacity-70 pb-4">
             <span className="font-light">Due at</span> {format(todo.dueAt, 'eee, MMMM do, yyyy - HH:mm')}

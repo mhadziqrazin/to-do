@@ -51,7 +51,7 @@ const DoneModal = () => {
       visible={doneModal.visible}
       setVisible={doneModal.setVisible}
     >
-      <p className="text-secondary-theme">
+      <p className="text-secondary-theme text-center">
         If you uncheck this To Do list, the corresponding feed post will be deleted
       </p>
     </Modal>

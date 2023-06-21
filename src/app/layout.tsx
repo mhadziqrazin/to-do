@@ -34,9 +34,11 @@ export default async function RootLayout({
           <EditModal />
           <ShareModal />
           <DoneModal />
-          <Nav user={user} />
-          <div className='container mx-auto px-4 py-16'>
-            {children}
+          <div>
+            <Nav user={user} />
+            <div className='container mx-auto px-4 py-16'>
+              {children}
+            </div>
           </div>
         </Theme>
       </body>
