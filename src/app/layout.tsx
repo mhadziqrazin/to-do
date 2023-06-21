@@ -8,6 +8,7 @@ import DeleteModal from '@/components/modals/DeleteModal'
 import EditModal from '@/components/modals/EditModal'
 import getUser from '@/actions/getUser'
 import ShareModal from '@/components/modals/ShareModal'
+import DoneModal from '@/components/modals/DoneModal'
 
 const font = Poppins({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] })
 
@@ -32,6 +33,7 @@ export default async function RootLayout({
           <DeleteModal />
           <EditModal />
           <ShareModal />
+          <DoneModal />
           <Nav user={user} />
           <div className='container mx-auto px-4 py-16'>
             {children}

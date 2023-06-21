@@ -38,8 +38,8 @@ const ToDoCard: React.FC<ToDoProps> = ({ todo }) => {
       </div>
       <section className="flex justify-end gap-1 p-2 text-primary">
         <ToDoDeleteButton todoId={todo.id} feedId={todo.feed?.id || ''} />
-        <ToDoEditButton todo={todo} />
-        <ToDoDoneButton todoId={todo.id} done={done} setDone={setDone} disabled={todo.done && !!todo.feed} />
+        <ToDoEditButton todo={todo} disabled={todo.done} />
+        <ToDoDoneButton todoId={todo.id} done={done} setDone={setDone} feedId={todo.feed?.id || ''} />
         {todo.done &&
           <ToDoShareButton todoId={todo.id} disabled={!!todo.feed} />
         }

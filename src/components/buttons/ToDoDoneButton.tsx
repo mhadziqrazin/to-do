@@ -1,6 +1,7 @@
 'use client'
 
 import updateToDo from "@/actions/doneToDo"
+import useDoneModal from "@/hooks/useDoneModal"
 import { useRouter } from "next/navigation"
 import { Dispatch, SetStateAction } from "react"
 import { toast } from "react-hot-toast"
@@ -10,13 +11,24 @@ interface ToDoDoneButtonProps {
   todoId: string
   done: boolean
   setDone: Dispatch<SetStateAction<boolean>>
-  disabled: boolean
+  feedId: string
 }
 
-const ToDoDoneButton: React.FC<ToDoDoneButtonProps> = ({ todoId, done, setDone, disabled }) => {
+const ToDoDoneButton: React.FC<ToDoDoneButtonProps> = ({
+  todoId, done, setDone, feedId
+}) => {
   const router = useRouter()
+  const doneModal = useDoneModal()
 
   const handleDone = async () => {
+    if (done && feedId !== '') {
+      doneModal.setId(todoId)
+      doneModal.setFeedId(feedId)
+      doneModal.setSetDone(setDone)
+      doneModal.onOpen()
+      return
+    }
+
     try {
 
       setDone(!done)
@@ -31,9 +43,8 @@ const ToDoDoneButton: React.FC<ToDoDoneButtonProps> = ({ todoId, done, setDone, 
 
   return (
     <button
-      disabled={disabled}
       onClick={handleDone}
-      className="hover:scale-110 transition disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+      className="hover:scale-110 transition"
     >
       {done ? (
         <MdCheckBox size={20} />
