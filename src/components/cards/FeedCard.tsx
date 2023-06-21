@@ -1,6 +1,7 @@
 import { Feed as FeedCard, Todo, User } from "@prisma/client"
 import Avatar from "../images/Avatar"
-import { format, formatDistance } from "date-fns"
+import { formatDistance } from "date-fns"
+import { format } from "date-fns-tz"
 
 interface FeedCardProps {
   feed: FeedCard & { todo: Todo, user: User }

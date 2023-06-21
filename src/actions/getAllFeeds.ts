@@ -8,7 +8,7 @@ const getAllFeeds = async () => {
         user: true
       },
       orderBy: {
-        createdAt: 'asc'
+        createdAt: 'desc'
       }
     })
 
