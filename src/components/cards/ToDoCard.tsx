@@ -6,7 +6,7 @@ import ToDoDoneButton from "../buttons/ToDoDoneButton"
 import ToDoEditButton from "../buttons/ToDoEditButton"
 import { useState } from "react"
 import ToDoShareButton from "../buttons/ToDoShareButton"
-import { format } from "date-fns-tz"
+import { format } from "date-fns"
 
 interface ToDoProps {
   todo: Todo & { feed: Feed | null }

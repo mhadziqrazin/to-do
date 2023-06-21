@@ -1,7 +1,8 @@
+'use client'
+
 import { Feed as FeedCard, Todo, User } from "@prisma/client"
 import Avatar from "../images/Avatar"
-import { formatDistance } from "date-fns"
-import { format } from "date-fns-tz"
+import { format, formatDistance } from "date-fns"
 
 interface FeedCardProps {
   feed: FeedCard & { todo: Todo, user: User }
@@ -29,7 +30,7 @@ const FeedCard: React.FC<FeedCardProps> = ({ feed }) => {
       <hr className="border-1-theme" />
       <section className="p-2">
         <p>
-          I just finished {feed.todo.title} that has due on {format(feed.todo.dueAt, 'dd/MM/yyyy - HH:mm zzz')}!
+          I just finished {feed.todo.title} that has due on {format(feed.todo.dueAt, 'dd/MM/yyyy - HH:mm', )}!
         </p>
         <p>
           <span className="text-primary">{formatDistance(feed.todo.dueAt, feed.createdAt, { addSuffix: true })}</span> earlier!!
