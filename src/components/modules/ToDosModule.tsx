@@ -1,9 +1,9 @@
 'use client'
 
-import { Feed, Todo, User } from "@prisma/client"
+import { Feed, Todo } from "@prisma/client"
 import useCreateModal from "@/hooks/useCreateModal"
 import { BsPlusSquareFill } from "react-icons/bs"
-import ToDo from "../todos/ToDo"
+import ToDo from "../cards/ToDo"
 import { IoMdArrowDropdown } from "react-icons/io"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useCallback } from "react"
