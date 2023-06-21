@@ -10,7 +10,7 @@ import { toast } from "react-hot-toast"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import UseEditModal from "@/hooks/useEditModal"
-import dateFormat from "dateformat"
+import { format } from "date-fns"
 
 const EditModal = () => {
   const editModal = UseEditModal()
@@ -21,19 +21,19 @@ const EditModal = () => {
     defaultValues: {
       title: editModal.title,
       description: editModal.description,
-      dueAt: dateFormat(editModal.dueAt, 'yyyy-mm-dd HH:MM')
+      dueAt: format(editModal.dueAt, 'yyyy-MM-dd HH:mm')
     }
   })
 
   useEffect(() => {
     setValue('title', editModal.title)
     setValue('description', editModal.description)
-    setValue('dueAt', dateFormat(editModal.dueAt, 'yyyy-mm-dd HH:MM'))
+    setValue('dueAt', format(editModal.dueAt, 'yyyy-MM-dd HH:mm'))
   }, [editModal.title, editModal.description, editModal.dueAt, setValue])
 
   const title = watch('title')
   const description = watch('description')
-  const dueAt = watch('dueAt') as string
+  const dueAt = watch('dueAt')
 
   const disabledButton = useMemo(() => {
     return (title === '') || (description === '') || (dueAt === '')
@@ -53,7 +53,7 @@ const EditModal = () => {
         newData.description = data.description
       }
 
-      if (dateFormat(data.dueAt, 'yyyy-mm-dd HH:MM') !== dateFormat(editModal.dueAt, 'yyyy-mm-dd HH:MM')) {
+      if (data.dueAt !== format(editModal.dueAt, 'yyyy-MM-dd HH:mm')) {
         newData.dueAt = new Date(data.dueAt)
       }
 
