@@ -3,7 +3,6 @@ import ToggleTheme from "../buttons/ToggleTheme"
 import Link from "next/link"
 import Filter from "./Filter"
 import { MdLogin } from "react-icons/md"
-import getUser from "@/actions/getUser"
 import LogoutButton from "../buttons/LogoutButton"
 import { User } from "@prisma/client"
 

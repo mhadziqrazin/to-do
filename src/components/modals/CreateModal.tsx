@@ -10,7 +10,7 @@ import InputDateTime from "../inputs/InputDateTime"
 import { toast } from "react-hot-toast"
 import axios from "axios"
 import { useRouter } from "next/navigation"
-import dateFormat from "dateformat"
+import { format } from "date-fns"
 
 const CreateModal = () => {
   const createModal = useCreateModal()
@@ -21,12 +21,12 @@ const CreateModal = () => {
     defaultValues: {
       title: '',
       description: '',
-      dueAt: dateFormat(new Date(), 'yyyy-mm-dd HH:MM')
+      dueAt: format(new Date(), 'yyyy-MM-dd HH:mm')
     }
   })
 
   useEffect(() => {
-    setValue('dueAt', dateFormat(new Date(), 'yyyy-mm-dd HH:MM'))
+    setValue('dueAt', format(new Date(), 'yyyy-MM-dd HH:mm'))
   }, [setValue])
 
   const title = watch('title')
@@ -43,7 +43,7 @@ const CreateModal = () => {
     try {
       data.dueAt = new Date(data.dueAt)
 
-      const res = await axios.post('/api/create', data)
+      const res = await axios.post('/api/todo', data)
 
       if (res.status !== 201) {
         throw new Error()
@@ -52,7 +52,7 @@ const CreateModal = () => {
       toast.success('To do list created')
       router.refresh()
       reset()
-      setValue('dueAt', dateFormat(new Date(), 'yyyy-mm-dd HH:MM'))
+      setValue('dueAt', format(new Date(), 'yyyy-MM-dd HH:mm'))
       createModal.setVisible(false)
       setTimeout(() => {
         createModal.onClose()

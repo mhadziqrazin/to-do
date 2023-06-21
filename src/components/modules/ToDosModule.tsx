@@ -1,16 +1,16 @@
 'use client'
 
-import { Todo, User } from "@prisma/client"
+import { Feed, Todo } from "@prisma/client"
 import useCreateModal from "@/hooks/useCreateModal"
 import { BsPlusSquareFill } from "react-icons/bs"
-import ToDo from "../todos/ToDo"
+import ToDoCard from "../cards/ToDoCard"
 import { IoMdArrowDropdown } from "react-icons/io"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useCallback } from "react"
 import queryString from "query-string"
 
 interface ToDosModuleProps {
-  todos: Todo[]
+  todos: (Todo & {feed: Feed | null})[]
 }
 
 const ToDosModule: React.FC<ToDosModuleProps> = ({
@@ -64,7 +64,7 @@ const ToDosModule: React.FC<ToDosModuleProps> = ({
           </button>
         </div>
         {todos.map((todo) => (
-          <ToDo key={todo.id} todo={todo} />
+          <ToDoCard key={todo.id} todo={todo} />
         ))}
       </section>
     </main>

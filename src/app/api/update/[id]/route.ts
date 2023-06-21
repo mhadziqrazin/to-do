@@ -11,7 +11,7 @@ export async function PUT(req: Request, { params }: { params: UpdateParams }) {
     const user = await getUser()
 
     if (!user) {
-      return NextResponse.json({ error: 'Unauthenticated' }, { status: 403 })
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     const { id } = params
@@ -36,7 +36,6 @@ export async function PUT(req: Request, { params }: { params: UpdateParams }) {
     return NextResponse.json({ todo: res }, { status: 200 })
     
   } catch (err) {
-    console.log(err)
-    return NextResponse.json({ error: 'Something went wrong' }, { status: 500 })
+    return NextResponse.json({ message: 'Something went wrong', error: err }, { status: 500 })
   }
 }

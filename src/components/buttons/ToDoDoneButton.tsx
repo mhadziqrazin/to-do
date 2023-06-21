@@ -1,6 +1,7 @@
 'use client'
 
 import updateToDo from "@/actions/doneToDo"
+import useDoneModal from "@/hooks/useDoneModal"
 import { useRouter } from "next/navigation"
 import { Dispatch, SetStateAction } from "react"
 import { toast } from "react-hot-toast"
@@ -10,12 +11,25 @@ interface ToDoDoneButtonProps {
   todoId: string
   done: boolean
   setDone: Dispatch<SetStateAction<boolean>>
+  feedId: string
+  todoDone: boolean
 }
 
-const ToDoDoneButton: React.FC<ToDoDoneButtonProps> = ({ todoId, done, setDone }) => {
+const ToDoDoneButton: React.FC<ToDoDoneButtonProps> = ({
+  todoId, done, setDone, feedId, todoDone
+}) => {
   const router = useRouter()
+  const doneModal = useDoneModal()
 
   const handleDone = async () => {
+    if (done && feedId !== '') {
+      doneModal.setId(todoId)
+      doneModal.setFeedId(feedId)
+      doneModal.setSetDone(setDone)
+      doneModal.onOpen()
+      return
+    }
+
     try {
 
       setDone(!done)
@@ -25,6 +39,7 @@ const ToDoDoneButton: React.FC<ToDoDoneButtonProps> = ({ todoId, done, setDone }
 
     } catch (err) {
       toast.error('Something went wrong')
+      setDone(todoDone)
     }
   }
 

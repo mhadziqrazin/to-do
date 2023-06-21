@@ -7,8 +7,6 @@ import { useRouter } from "next/navigation"
 import { toast } from "react-hot-toast"
 import axios from "axios"
 
-
-
 const DeleteModal = () => {
   const deleteModal = useDeleteModal()
   const [loading, setLoading] = useState(false)
@@ -18,7 +16,7 @@ const DeleteModal = () => {
     setLoading(true)
 
     try {
-      const res = await axios.delete(`/api/delete/${deleteModal.id}`)
+      const res = await axios.delete(`/api/todo/${deleteModal.id}`)
 
       if (res.status === 200) {
         toast.success('To Do list deleted')
@@ -29,12 +27,12 @@ const DeleteModal = () => {
     } catch (err) {
       toast.error('Something went wrong')
     }
-    
+
     deleteModal.setVisible(false)
     setTimeout(() => {
       deleteModal.onClose()
     }, 300)
-    
+
     setLoading(false)
   }
 
@@ -53,6 +51,11 @@ const DeleteModal = () => {
       <p className="text-center text-secondary-theme">
         You can&apos;t undo this action
       </p>
+      {deleteModal.feedId !== '' &&
+        <p className="text-center text-secondary-theme">
+          This action will also delete this list&apos;s feed post!
+        </p>
+      }
     </Modal>
   )
 }

@@ -13,7 +13,7 @@ export async function DELETE(
     const user = await getUser()
 
     if (!user) {
-      return NextResponse.json({ error: 'Unauthenticated' }, { status: 403 })
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     const { id } = params
@@ -31,6 +31,6 @@ export async function DELETE(
     return NextResponse.json({ message: 'Deleted' }, { status: 200 })
 
   } catch (err) {
-    return NextResponse.json({ error: 'Something went wrong' }, { status: 500 })
+    return NextResponse.json({ message: 'Something went wrong', error: err }, { status: 500 })
   }
 }

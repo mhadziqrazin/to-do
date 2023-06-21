@@ -13,7 +13,7 @@ const Avatar: React.FC<AvatarProps> = ({ src, onClick }) => {
         height={"30"}
         width={"30"}
         src={src || "/images/placeholder.jpg"}
-        className="rounded-full border-2 border-primary shadow-md"
+        className="rounded-full min-h-[30px] min-w-[30px] shadow-md"
       />
     </div>
   )

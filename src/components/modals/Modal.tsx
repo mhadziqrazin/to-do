@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect } from "react"
 import { IoCloseSharp } from "react-icons/io5"
 import Button from "../buttons/Button"
 
