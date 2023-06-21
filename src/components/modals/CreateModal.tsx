@@ -43,7 +43,7 @@ const CreateModal = () => {
     try {
       data.dueAt = new Date(data.dueAt)
 
-      const res = await axios.post('/api/create', data)
+      const res = await axios.post('/api/todo', data)
 
       if (res.status !== 201) {
         throw new Error()

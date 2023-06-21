@@ -16,7 +16,7 @@ const DeleteModal = () => {
     setLoading(true)
 
     try {
-      const res = await axios.delete(`/api/delete/${deleteModal.id}`)
+      const res = await axios.delete(`/api/todo/${deleteModal.id}`)
 
       if (res.status === 200) {
         toast.success('To Do list deleted')
