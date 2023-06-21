@@ -12,9 +12,17 @@ const FeedCard: React.FC<FeedCardProps> = ({ feed }) => {
       <section className="flex justify-between items-center p-2">
         <div className="flex gap-2 items-center">
           <Avatar src={feed.user.image || undefined} />
-          <h1 className="text-lg break-words">
-            {feed.user.name}
+          <h1 className="text-lg">
+            {feed.user.username}
           </h1>
+        </div>
+        <div className="text-xs text-secondary-theme flex flex-col items-end">
+          <p>
+            {format(feed.createdAt, 'dd/MM/yyyy')}
+          </p>
+          <p>
+            {format(feed.createdAt, 'HH:mm')}
+          </p>
         </div>
       </section>
     </div>

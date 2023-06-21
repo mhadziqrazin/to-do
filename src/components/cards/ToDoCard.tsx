@@ -6,6 +6,7 @@ import ToDoDoneButton from "../buttons/ToDoDoneButton"
 import ToDoEditButton from "../buttons/ToDoEditButton"
 import { useState } from "react"
 import ToDoShareButton from "../buttons/ToDoShareButton"
+import { format } from "date-fns"
 
 interface ToDoProps {
   todo: Todo & { feed: Feed | null }
@@ -29,7 +30,7 @@ const ToDoCard: React.FC<ToDoProps> = ({ todo }) => {
         </section>
         <section className="p-2 text-lg font-semibold">
           <p className="text-xs opacity-70 pb-4">
-            <span className="font-light">Due at</span> {todo.dueAt.toLocaleString('en-GB', { dateStyle: 'full', timeStyle: 'short', hour12: false })}
+            <span className="font-light">Due at</span> {format(todo.dueAt, 'eeee, MMMM do, yyyy - HH:mm')}
           </p>
           <p className="font-light whitespace-pre-wrap break-words">
             {todo.description}
