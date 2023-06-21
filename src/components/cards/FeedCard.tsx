@@ -30,7 +30,7 @@ const FeedCard: React.FC<FeedCardProps> = ({ feed }) => {
       <hr className="border-1-theme" />
       <section className="p-2 font-light">
         <p>
-          I just finished &quot;<span className="font-medium">{feed.todo.title}</span>&quot; that has due on {format(feed.todo.dueAt, 'dd/MM/yyyy - HH:mm',)}!
+          I just finished &quot;<span className="font-medium">{feed.todo.title}</span>&quot; that has due date on {format(feed.todo.dueAt, 'dd/MM/yyyy - HH:mm',)}!
         </p>
         {
           feed.todo.dueAt >= feed.createdAt ? (

@@ -13,7 +13,15 @@ export default async function NotYetTodos({ searchParams }: ToDosPageProps) {
 
   const todos = await getAllToDos(user, '/todos/not-yet', searchParams)
 
+  const emptyToDo = (
+    <>
+      <p className="font-medium text-lg">
+        Well done, my friend :D
+      </p>
+    </>
+  )
+
   return (
-    <ToDosModule todos={todos} />
+    <ToDosModule todos={todos} emptyToDo={emptyToDo} />
   )
 }

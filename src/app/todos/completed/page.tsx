@@ -13,7 +13,15 @@ export default async function CompletedTodos({ searchParams }: ToDosPageProps) {
 
   const todos = await getAllToDos(user, '/todos/completed', searchParams)
 
+  const emptyToDo = (
+    <>
+      <p className="font-medium text-lg">
+        Hey, start working! &gt;:(
+      </p>
+    </>
+  )
+
   return (
-    <ToDosModule todos={todos} />
+    <ToDosModule todos={todos} emptyToDo={emptyToDo} />
   )
 }

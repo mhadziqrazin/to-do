@@ -13,7 +13,22 @@ export default async function AllTodos({ searchParams }: ToDosPageProps) {
 
   const todos = await getAllToDos(user, '/todos/all', searchParams)
 
+  const emptyToDo = (
+    <>
+      <p className="font-medium text-lg">
+        You don&apos;t have any To Do list :(
+      </p>
+      <p className="font-light">
+        Start creating one by clicking on the plus button up left there!
+      </p>
+      <p className="font-light">
+        After you finish a To Do list, you can share your accomplishment so everyone can see it on the Feed page!<br />
+        (Flex mode 😎)
+      </p>
+    </>
+  )
+
   return (
-    <ToDosModule todos={todos} />
+    <ToDosModule todos={todos} emptyToDo={emptyToDo} />
   )
 }

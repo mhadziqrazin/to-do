@@ -10,11 +10,12 @@ import { useCallback } from "react"
 import queryString from "query-string"
 
 interface ToDosModuleProps {
-  todos: (Todo & {feed: Feed | null})[]
+  todos: (Todo & { feed: Feed | null })[]
+  emptyToDo: React.ReactNode
 }
 
 const ToDosModule: React.FC<ToDosModuleProps> = ({
-  todos
+  todos, emptyToDo
 }) => {
   const createModal = useCreateModal()
   const params = useSearchParams()
@@ -63,6 +64,11 @@ const ToDosModule: React.FC<ToDosModuleProps> = ({
             <IoMdArrowDropdown size={20} className={`${sort === 'asc' && 'rotate-180'} transition duration-300`} />
           </button>
         </div>
+        {todos.length === 0 && (
+          <section className="text-center pt-8 flex flex-col gap-4">
+            {emptyToDo}
+          </section>
+        )}
         {todos.map((todo) => (
           <ToDoCard key={todo.id} todo={todo} />
         ))}
