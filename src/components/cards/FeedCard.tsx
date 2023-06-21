@@ -28,13 +28,21 @@ const FeedCard: React.FC<FeedCardProps> = ({ feed }) => {
         </div>
       </section>
       <hr className="border-1-theme" />
-      <section className="p-2">
+      <section className="p-2 font-light">
         <p>
-          I just finished {feed.todo.title} that has due on {format(feed.todo.dueAt, 'dd/MM/yyyy - HH:mm', )}!
+          I just finished &quot;<span className="font-normal">{feed.todo.title}</span>&quot; that has due on {format(feed.todo.dueAt, 'dd/MM/yyyy - HH:mm',)}!
         </p>
-        <p>
-          <span className="text-primary">{formatDistance(feed.todo.dueAt, feed.createdAt, { addSuffix: true })}</span> earlier!!
-        </p>
+        {
+          feed.todo.dueAt >= feed.createdAt ? (
+            <p>
+              And it&apos;s <span className="text-primary font-normal">{formatDistance(feed.todo.dueAt, feed.createdAt)}</span> earlier!!
+            </p>
+          ) : (
+            <p>
+              But it&apos;s <span className="text-primary font-normal">{formatDistance(feed.todo.dueAt, feed.createdAt)}</span> late :(
+            </p>
+          )
+        }
       </section>
     </div>
   )
