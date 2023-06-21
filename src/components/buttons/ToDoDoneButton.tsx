@@ -12,10 +12,11 @@ interface ToDoDoneButtonProps {
   done: boolean
   setDone: Dispatch<SetStateAction<boolean>>
   feedId: string
+  todoDone: boolean
 }
 
 const ToDoDoneButton: React.FC<ToDoDoneButtonProps> = ({
-  todoId, done, setDone, feedId
+  todoId, done, setDone, feedId, todoDone
 }) => {
   const router = useRouter()
   const doneModal = useDoneModal()
@@ -38,6 +39,7 @@ const ToDoDoneButton: React.FC<ToDoDoneButtonProps> = ({
 
     } catch (err) {
       toast.error('Something went wrong')
+      setDone(todoDone)
     }
   }
 

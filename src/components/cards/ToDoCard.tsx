@@ -4,7 +4,7 @@ import { Feed, Todo } from "@prisma/client"
 import ToDoDeleteButton from "../buttons/ToDoDeleteButton"
 import ToDoDoneButton from "../buttons/ToDoDoneButton"
 import ToDoEditButton from "../buttons/ToDoEditButton"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ToDoShareButton from "../buttons/ToDoShareButton"
 import { format } from "date-fns"
 
@@ -40,11 +40,11 @@ const ToDoCard: React.FC<ToDoProps> = ({ todo }) => {
       </div>
       <section className="flex justify-end gap-1 p-2 text-primary">
         <ToDoDeleteButton todoId={todo.id} feedId={todo.feed?.id || ''} />
-        <ToDoEditButton todo={todo} disabled={todo.done} />
-        <ToDoDoneButton todoId={todo.id} done={done} setDone={setDone} feedId={todo.feed?.id || ''} />
-        {todo.done &&
+        <ToDoEditButton todo={todo} disabled={done} />
+        {done &&
           <ToDoShareButton todoId={todo.id} disabled={!!todo.feed} />
         }
+        <ToDoDoneButton todoId={todo.id} done={done} todoDone={todo.done} setDone={setDone} feedId={todo.feed?.id || ''} />
       </section>
     </div>
   )
