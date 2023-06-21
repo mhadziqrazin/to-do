@@ -29,7 +29,7 @@ const FeedCard: React.FC<FeedCardProps> = ({ feed }) => {
       <hr className="border-1-theme" />
       <section className="p-2">
         <p>
-          I just finished {feed.todo.title} that has due on {format(feed.todo.dueAt, 'dd/MM/yyyy - HH:mm')}!
+          I just finished {feed.todo.title} that has due on {format(feed.todo.dueAt, 'dd/MM/yyyy - HH:mm zzz')}!
         </p>
         <p>
           <span className="text-primary">{formatDistance(feed.todo.dueAt, feed.createdAt, { addSuffix: true })}</span> earlier!!
