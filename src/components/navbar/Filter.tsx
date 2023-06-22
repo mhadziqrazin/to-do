@@ -1,5 +1,6 @@
 'use client'
 
+import useOutsideClick from "@/hooks/useOutsideClick"
 import Link from "next/link"
 import { usePathname, useSearchParams } from "next/navigation"
 import { useCallback, useEffect, useMemo, useState } from "react"
@@ -45,6 +46,8 @@ const Filter = () => {
       setOpen(false)
     }, 500)
   }, [setOpen, setVisible])
+
+  const filterRef = useOutsideClick(handleClose)
 
   return (
     <>
@@ -93,7 +96,7 @@ const Filter = () => {
           <IoIosArrowDown className={`${visible && 'rotate-180'} transition duration-300`} />
         </button>
         {open && (
-          <div className="absolute top-[24px]">
+          <div className="absolute top-[24px]" ref={filterRef}>
             <ul className={`
                 bg-theme border-2-theme flex flex-col text-secondary-theme items-center overflow-hidden rounded-xl text-md shadow-theme
                 ${visible ? 'h-[132px]' : 'h-[0px]'}
