@@ -8,6 +8,8 @@ import { useMemo, useState } from "react"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { toast } from "react-hot-toast"
+import useDeleteModal from "@/hooks/useDeleteModal"
+import { MdOutlineDelete } from "react-icons/md"
 
 interface FeedCardProps {
   feed: Feed & { todo: Todo, user: User, userLikes: Likes[] }
@@ -17,7 +19,8 @@ interface FeedCardProps {
 const FeedCard: React.FC<FeedCardProps> = ({ feed, user }) => {
   const [likes, setLikes] = useState(feed.userLikes.length)
   const router = useRouter()
-  
+  const deleteModal = useDeleteModal()
+
   const hasLiked = useMemo(() => {
     const isLiked = feed.userLikes.filter((like) => like.userId === user?.id)
     return isLiked.length === 1
@@ -44,7 +47,7 @@ const FeedCard: React.FC<FeedCardProps> = ({ feed, user }) => {
   const addLike = async () => {
     try {
       const res = await axios.post(`/api/like/${feed.id}`)
-      
+
       if (res.status !== 201) {
         throw new Error()
       }
@@ -59,7 +62,7 @@ const FeedCard: React.FC<FeedCardProps> = ({ feed, user }) => {
   const removeLike = async () => {
     try {
       const res = await axios.delete(`/api/like/${feed.id}`)
-      
+
       if (res.status !== 200) {
         throw new Error()
       }
@@ -106,16 +109,30 @@ const FeedCard: React.FC<FeedCardProps> = ({ feed, user }) => {
           )
         }
       </section>
-      <section className="p-2 flex gap-2 items-center">
-        <button
-          onClick={handleLike}
-          className={`${liked && 'text-primary'} hover:scale-110 transition`}
-        >
-          <AiFillLike size={20} />
-        </button>
-        <p>
-          {likes}
-        </p>
+      <section className="p-2 flex justify-between items-center">
+        <div className="flex gap-2 items-center">
+          <button
+            onClick={handleLike}
+            className={`${liked && 'text-primary'} hover:scale-110 transition`}
+          >
+            <AiFillLike size={20} />
+          </button>
+          <p>
+            {likes}
+          </p>
+        </div>
+        {user?.id === feed.userId &&
+          <button
+            onClick={() => {
+              deleteModal.setId(feed.id)
+              deleteModal.setFeedId('feed')
+              deleteModal.onOpen()
+            }}
+            className="hover:scale-110 transition text-primary"
+          >
+            <MdOutlineDelete size={20} />
+          </button>
+        }
       </section>
     </div>
   )

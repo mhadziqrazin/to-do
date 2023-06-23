@@ -16,13 +16,26 @@ const DeleteModal = () => {
     setLoading(true)
 
     try {
-      const res = await axios.delete(`/api/todo/${deleteModal.id}`)
+      if (deleteModal.feedId === 'feed') {
+        const res = await axios.delete(`/api/feed/${deleteModal.id}`)
 
-      if (res.status === 200) {
-        toast.success('To Do list deleted')
-        router.refresh()
+        if (res.status === 200) {
+          toast.success('Feed deleted')
+          router.refresh()
+        } else {
+          toast.error('Something went wrong')
+        }
+        
       } else {
-        toast.error('Something went wrong')
+
+        const res = await axios.delete(`/api/todo/${deleteModal.id}`)
+
+        if (res.status === 200) {
+          toast.success('To Do list deleted')
+          router.refresh()
+        } else {
+          toast.error('Something went wrong')
+        }
       }
     } catch (err) {
       toast.error('Something went wrong')
@@ -51,7 +64,7 @@ const DeleteModal = () => {
       <p className="text-center text-secondary-theme">
         You can&apos;t undo this action
       </p>
-      {deleteModal.feedId !== '' &&
+      {deleteModal.feedId !== '' && deleteModal.feedId !== 'feed' &&
         <p className="text-center text-secondary-theme">
           This action will also delete this list&apos;s feed post!
         </p>
