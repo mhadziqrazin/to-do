@@ -1,14 +1,79 @@
 'use client'
 
-import { Feed as FeedCard, Todo, User } from "@prisma/client"
+import { Feed, Likes, Todo, User } from "@prisma/client"
 import Avatar from "../images/Avatar"
 import { format, formatDistance } from "date-fns"
+import { AiFillLike } from "react-icons/ai"
+import { useMemo, useState } from "react"
+import axios from "axios"
+import { useRouter } from "next/navigation"
+import { toast } from "react-hot-toast"
+import useDeleteModal from "@/hooks/useDeleteModal"
+import { MdOutlineDelete } from "react-icons/md"
 
 interface FeedCardProps {
-  feed: FeedCard & { todo: Todo, user: User }
+  feed: Feed & { todo: Todo, user: User, userLikes: Likes[] }
+  user: User | null
 }
 
-const FeedCard: React.FC<FeedCardProps> = ({ feed }) => {
+const FeedCard: React.FC<FeedCardProps> = ({ feed, user }) => {
+  const [likes, setLikes] = useState(feed.userLikes.length)
+  const router = useRouter()
+  const deleteModal = useDeleteModal()
+
+  const hasLiked = useMemo(() => {
+    const isLiked = feed.userLikes.filter((like) => like.userId === user?.id)
+    return isLiked.length === 1
+  }, [user])
+
+  const [liked, setLiked] = useState(hasLiked)
+
+  const handleLike = async () => {
+    if (!user) {
+      return toast.error('Login first 🥺')
+    }
+
+    if (!liked) {
+      setLikes((value) => value + 1)
+      setLiked(true)
+      await addLike()
+    } else {
+      setLikes((value) => value - 1)
+      setLiked(false)
+      await removeLike()
+    }
+  }
+
+  const addLike = async () => {
+    try {
+      const res = await axios.post(`/api/like/${feed.id}`)
+
+      if (res.status !== 201) {
+        throw new Error()
+      }
+
+      router.refresh()
+    } catch (err) {
+      console.log(err)
+      setLiked(hasLiked)
+    }
+  }
+
+  const removeLike = async () => {
+    try {
+      const res = await axios.delete(`/api/like/${feed.id}`)
+
+      if (res.status !== 200) {
+        throw new Error()
+      }
+
+      router.refresh()
+    } catch (err) {
+      console.log(err)
+      setLiked(hasLiked)
+    }
+  }
+
   return (
     <div className="bg-theme border-2-theme rounded-xl overflow-hidden shadow-theme">
       <section className="flex justify-between items-center p-2">
@@ -42,6 +107,31 @@ const FeedCard: React.FC<FeedCardProps> = ({ feed }) => {
               But it&apos;s <span className="text-primary font-medium">{formatDistance(feed.todo.dueAt, feed.createdAt)}</span> late :(
             </p>
           )
+        }
+      </section>
+      <section className="p-2 flex justify-between items-center">
+        <div className="flex gap-2 items-center">
+          <button
+            onClick={handleLike}
+            className={`${liked && 'text-primary'} hover:scale-110 transition`}
+          >
+            <AiFillLike size={20} />
+          </button>
+          <p>
+            {likes}
+          </p>
+        </div>
+        {user?.id === feed.userId &&
+          <button
+            onClick={() => {
+              deleteModal.setId(feed.id)
+              deleteModal.setFeedId('feed')
+              deleteModal.onOpen()
+            }}
+            className="hover:scale-110 transition text-primary"
+          >
+            <MdOutlineDelete size={20} />
+          </button>
         }
       </section>
     </div>

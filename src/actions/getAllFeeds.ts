@@ -5,7 +5,8 @@ const getAllFeeds = async () => {
     const res = await prisma.feed.findMany({
       include: {
         todo: true,
-        user: true
+        user: true,
+        userLikes: true
       },
       orderBy: {
         createdAt: 'desc'
