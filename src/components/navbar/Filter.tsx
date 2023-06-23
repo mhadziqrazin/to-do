@@ -31,7 +31,7 @@ const Filter = () => {
       case '/todos/completed':
         return 'Completed'
     }
-  }, [pathname])
+  }, [pathname, callbackUrl])
 
   const [open, setOpen] = useState(false)
   const [visible, setVisible] = useState(false)
