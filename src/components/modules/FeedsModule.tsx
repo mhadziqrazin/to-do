@@ -22,7 +22,7 @@ const FeedsModule: React.FC<FeedsModuleProps> = ({
         ))}
       </section>
 
-      <p className="mt-16 text-[0.5rem] md:text-xs text-center font-light opacity-70">
+      <p className="mt-16 text-[0.5rem] md:text-xs text-center font-light opacity-90">
         Created by <span className="font-semibold text-primary">Muhammad Hadziq Razin</span> &copy; 2023. All Rights Reserved.
       </p>
     </main>
